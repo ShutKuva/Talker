@@ -29,7 +29,7 @@ namespace BLL.Services
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<User> Get()
+        public IEnumerable<User> Read()
         {
             throw new System.NotImplementedException();
         }

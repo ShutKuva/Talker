@@ -8,6 +8,6 @@ namespace BLL.Abstractions.Interfaces
         void Create(User user);
         void Delete(int id);
         void Update(User user);
-        IEnumerable<User> Get();
+        IEnumerable<User> Read();
     }
 }

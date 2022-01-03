@@ -15,10 +15,10 @@ namespace ConsoleApp3
         public void StartApp()
         {
             var user = new User();
-            user.Id = 1;
+            user.Id = 10;
             user.Name = "Pavel";
             user.Surname = "Petrenko";
-            user.Age = 32;
+            user.Age = 63;
             
             _userService.Create(user);
         }

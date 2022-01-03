@@ -19,6 +19,8 @@ namespace ConsoleApp3
             user.Name = "Pavel";
             user.Surname = "Petrenko";
             user.Age = 32;
+
+            //hello github!
             
             _userService.Create(user);
         }

@@ -5,6 +5,8 @@ namespace ConsoleApp3
 {
     public class App
     {
+        const string REGISTER = "-r",
+
         private readonly IUserService _userService;
 
         public App(IUserService userService)
@@ -14,13 +16,10 @@ namespace ConsoleApp3
         
         public void StartApp()
         {
-            var user = new User();
-            user.Id = 10;
-            user.Name = "Pavel";
-            user.Surname = "Petrenko";
-            user.Age = 63;
-            
-            _userService.Create(user);
+            while (true)
+            {
+
+            }
         }
     }
 }

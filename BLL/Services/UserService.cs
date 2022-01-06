@@ -24,9 +24,9 @@ namespace BLL.Services
             throw new System.NotImplementedException();
         }
 
-        public void Update(User user)
+        public async void Update(User user)
         {
-            throw new System.NotImplementedException();
+            await _userRepository.UpdateAsync(user);
         }
 
         public IEnumerable<User> Get()

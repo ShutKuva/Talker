@@ -8,6 +8,8 @@ namespace ConsoleApp3
 {
     public class App
     {
+        const string REGISTER = "-r",
+
         private readonly IUserService _userService;
 
         public App(IUserService userService)

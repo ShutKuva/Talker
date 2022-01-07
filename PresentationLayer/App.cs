@@ -39,42 +39,28 @@ namespace ConsoleApp3
                         string username = ReadLine();
                         WriteLine("Enter password: ");
                         string password = hasher.GetHash(ReadLine());
-                        var task = _userService.Read();
-                        var list = task.Result;
 
-                        if (list != null)
+                        try
                         {
-                            foreach (var u in list)
+                            var task = _userService.Read();
+                            var list = task.Result;
+
+                            if (list != null)
                             {
-                                if (u.Username == username && u.Password == password)
+                                foreach (var u in list)
                                 {
-                                    WriteLine("Logged in!");
-                                    break;
+                                    if (u.Username == username && u.Password == password)
+                                    {
+                                        WriteLine("Logged in!");
+                                        break;
+                                    }
                                 }
                             }
                         }
-
-                        //try
-                        //{
-                        //    var task = _userService.Read();
-                        //    var list = task.Result;
-
-                        //    if (list != null)
-                        //    {
-                        //        foreach (var u in list)
-                        //        {
-                        //            if (u.Username == username && u.Password == password)
-                        //            {
-                        //                WriteLine("Logged in!");
-                        //                break;
-                        //            }
-                        //        }
-                        //    }
-                        //}
-                        //catch (Exception ex)
-                        //{
-                        //    WriteLine($"An error occured: '{ex.Message}'");
-                        //}
+                        catch (Exception ex)
+                        {
+                            WriteLine($"An error occured: '{ex.Message}'");
+                        }
 
                         break;
                 }

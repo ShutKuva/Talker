@@ -2,6 +2,8 @@
 using BLL.Abstractions.Interfaces;
 using Core.Models;
 using DAL.Abstractions.Interfaces;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace BLL.Services
 {
@@ -29,9 +31,10 @@ namespace BLL.Services
             await _userRepository.UpdateAsync(user);
         }
 
-        public IEnumerable<User> Get()
+        public IEnumerable<User> Read()
         {
-            throw new System.NotImplementedException();
+            var allData = (await _userRepository.FindAllAsync()).ToList();
+            return allData;
         }
     }
 }

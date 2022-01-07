@@ -11,6 +11,4 @@ namespace BLL.Abstractions.Interfaces
         void Update(User user);
         Task<List<User>> Read();
     }
-
-
 }

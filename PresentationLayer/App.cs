@@ -2,7 +2,6 @@
 using Core.Models;
 using static System.Console;
 using BLL.Services;
-using System;
 
 namespace ConsoleApp3
 {
@@ -40,28 +39,42 @@ namespace ConsoleApp3
                         string username = ReadLine();
                         WriteLine("Enter password: ");
                         string password = hasher.GetHash(ReadLine());
+                        var task = _userService.Read();
+                        var list = task.Result;
 
-                        try
+                        if (list != null)
                         {
-                            var task = _userService.Read();
-                            var list = task.Result;
-
-                            if (list != null)
+                            foreach (var u in list)
                             {
-                                foreach (var u in list)
+                                if (u.Username == username && u.Password == password)
                                 {
-                                    if (u.Username == username && u.Password == password)
-                                    {
-                                        WriteLine("Logged in!");
-                                        break;
-                                    }
+                                    WriteLine("Logged in!");
+                                    break;
                                 }
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            WriteLine($"An error occured: '{ex.Message}'");
-                        }
+
+                        //try
+                        //{
+                        //    var task = _userService.Read();
+                        //    var list = task.Result;
+
+                        //    if (list != null)
+                        //    {
+                        //        foreach (var u in list)
+                        //        {
+                        //            if (u.Username == username && u.Password == password)
+                        //            {
+                        //                WriteLine("Logged in!");
+                        //                break;
+                        //            }
+                        //        }
+                        //    }
+                        //}
+                        //catch (Exception ex)
+                        //{
+                        //    WriteLine($"An error occured: '{ex.Message}'");
+                        //}
 
                         break;
                 }

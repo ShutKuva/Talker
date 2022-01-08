@@ -1,13 +1,17 @@
 ﻿using BLL.Abstractions.Interfaces;
 using Core.Models;
+using Core;
 using static System.Console;
 using BLL.Services;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using PresentationLayer.Validators;
+using Microsoft.Extensions.Options;
+using static System.Console;
+using BLL.Services;
 
-namespace ConsoleApp3
+namespace Talker
 {
     public class App
     {
@@ -17,10 +21,12 @@ namespace ConsoleApp3
             CHANGE_PARAMETERS_FORLOGIN = "cPar";
 
         private readonly IUserService _userService;
+        private readonly PasswordValidationParameters _passwordValidationParameters;
 
-        public App(IUserService userService)
+        public App(IUserService userService, IOptions<PasswordValidationParameters> passwordValidationParameters)
         {
             _userService = userService;
+            _passwordValidationParameters = passwordValidationParameters?.Value ?? throw new ArgumentNullException(nameof(passwordValidationParameters));
         }
         
         public void StartApp()
@@ -95,6 +101,7 @@ namespace ConsoleApp3
                 {
                     case CHANGE_PARAMETERS_FORLOGIN:
                         ChangeLoginParameters(hasher, user);
+                        itsNoLogOut = false;
                         break;
                     case LOGOUT:
                         WriteLine("Good bye!");
@@ -128,7 +135,7 @@ namespace ConsoleApp3
             string passwordCorrection;
             do
             {
-                passwordCorrection = passwordValidatorInstance.IsItValidPassword(newPassword);
+                passwordCorrection = passwordValidatorInstance.IsItValidPassword(newPassword, _passwordValidationParameters);
                 if (!String.IsNullOrWhiteSpace(passwordCorrection))
                 {
                     WriteLine(passwordCorrection);
@@ -136,9 +143,9 @@ namespace ConsoleApp3
                 }
             } while (!String.IsNullOrWhiteSpace(passwordCorrection));
 
-            user.Password = hasher.GetHash(newPassword);
+            newUser.Password = hasher.GetHash(newPassword);
 
-            _userService.Update(user, newUser);
+            WriteLine(_userService.TryUpdate(user, newUser).Content);
         }
     }
 }

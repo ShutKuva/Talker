@@ -28,35 +28,7 @@ namespace BLL.Services
 
         public void Update(User user)
         {
-            _userRepository.UpdateAsync(user);
-        }
-
-        public CustomResult TryUpdate(User user, User newUser)
-        {
-            Task<List<User>> task = Read();
-            IEnumerable<User> list = task.Result;
-            User parent = user;
-            bool itsValidUserName = true;
-            foreach (User temp in list)
-            {
-                if (newUser.Username.Equals(temp.Username))
-                {
-                    itsValidUserName = false;
-                    break;
-                }
-            }
-
-            if (itsValidUserName)
-            {
-                user.Username = newUser.Username;
-                user.Password = newUser.Password;
-                Update(user);
-                return new CustomResult() { Content = "Succesfully updated" };
-            } 
-            else
-            {
-                return new CustomResult() { Content = "Already used username" };
-            }
+            throw new System.NotImplementedException();
         }
 
         public async Task<List<User>> Read()

@@ -6,7 +6,7 @@ using BLL.Services;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using PresentationLayer.Validators;
+using BLL.Validators;
 using Microsoft.Extensions.Options;
 
 namespace Talker
@@ -16,7 +16,7 @@ namespace Talker
         const string REGISTER = "register",
             LOGIN = "logIn",
             LOGOUT = "logOut",
-            CHANGE_PARAMETERS_FORLOGIN = "cPar";
+            CHANGE_PARAMETERS_FOR_LOGIN = "cPar";
 
         private readonly IUserService _userService;
         private readonly PasswordValidationParameters _passwordValidationParameters;
@@ -41,20 +41,53 @@ namespace Talker
 
             _userService.Create(user);
 
-            string command = ReadLine();
+            string command;
 
             while (true)
             {
-                switch(command)
+                command = ReadLine();
+                switch (command)
                 {
                     case LOGIN:
                         Login(hasher);
+                        break;
+                    case REGISTER:
+                        Register(hasher);
                         break;
                     default:
                         WriteLine("Unknown command");
                         break;
                 }
             }
+        }
+
+        void Register(HashHandler hasher)
+        {
+            var newUser = new User();
+            WriteLine("Write your name:");
+            newUser.Name = ReadLine();
+            WriteLine("Write your surname:");
+            newUser.Surname = ReadLine();
+            int age;
+            bool ageFlag = true;
+            do {
+                WriteLine("Write your age:");
+                if (!Int32.TryParse(ReadLine(), out age))
+                {
+                    WriteLine("Your age is no number");
+                } else
+                {
+                    ageFlag = false;
+                }
+            } while (ageFlag);
+            newUser.Age = age;
+            WriteLine("Write your username:");
+            newUser.Username = ReadLine();
+            GetPassword(hasher, newUser);
+            var random = new Random();
+            newUser.Id = random.Next(10000, 99999);
+
+            _userService.Create(newUser);
         }
 
         void Login(HashHandler hasher)
@@ -90,14 +123,15 @@ namespace Talker
 
         void ActionsWithLoggedUser(HashHandler hasher, User user)
         {
-            string command = ReadLine();
+            string command;
             bool itsNoLogOut = true;
 
             while (itsNoLogOut)
             {
+                command = ReadLine();
                 switch (command)
                 {
-                    case CHANGE_PARAMETERS_FORLOGIN:
+                    case CHANGE_PARAMETERS_FOR_LOGIN:
                         ChangeLoginParameters(hasher, user);
                         itsNoLogOut = false;
                         break;
@@ -127,6 +161,14 @@ namespace Talker
                 }
             } while (isNotValidUsername);
             newUser.Username = newUsername;
+
+            GetPassword(hasher, newUser);
+
+            WriteLine(_userService.TryUpdate(user, newUser).Content);
+        }
+
+        void GetPassword(HashHandler hasher, User newUser)
+        {
             WriteLine("Write new password:");
             var passwordValidatorInstance = new PasswordValidator();
             string newPassword = ReadLine();
@@ -142,8 +184,6 @@ namespace Talker
             } while (!String.IsNullOrWhiteSpace(passwordCorrection));
 
             newUser.Password = hasher.GetHash(newPassword);
-
-            WriteLine(_userService.TryUpdate(user, newUser).Content);
         }
     }
 }

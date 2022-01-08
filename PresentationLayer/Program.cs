@@ -4,7 +4,7 @@ using Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ConsoleApp3
+namespace Talker
 {
     class Program
     {
@@ -24,6 +24,7 @@ namespace ConsoleApp3
                 .AddEnvironmentVariables()
                 .Build();
             services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
+            services.Configure<PasswordValidationParameters>(configuration.GetSection("PasswordValidationParameters"));
             
             services.AddScoped<App>();
             DependencyRegistrar.ConfigureServices(services);

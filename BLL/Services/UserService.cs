@@ -59,7 +59,7 @@ namespace BLL.Services
             }
         }
 
-        public async Task<IEnumerable<User>> Read()
+        public async Task<List<User>> Read()
         {
             var allData = (await _userRepository.FindAllAsync()).ToList();
             return allData;

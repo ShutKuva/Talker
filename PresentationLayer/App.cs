@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using BLL.Validators;
 using Microsoft.Extensions.Options;
+using static System.Console;
+using BLL.Services;
 
 namespace Talker
 {

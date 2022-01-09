@@ -11,9 +11,8 @@ namespace BLL.Abstractions.Interfaces
         void Delete(int id);
 
         void Update(User user);
+        Task<List<User>> Read();
 
         CustomResult TryUpdate(User user, User newUser);
-
-        Task<IEnumerable<User>> Read();
     }
 }

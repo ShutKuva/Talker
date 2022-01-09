@@ -31,38 +31,41 @@ namespace BLL.Services
             _userRepository.UpdateAsync(user);
         }
 
-        public CustomResult TryUpdate(User user, User newUser)
-        {
-            Task<IEnumerable<User>> task = Read();
-            IEnumerable<User> list = task.Result;
-            User parent = user;
-            bool itsValidUserName = true;
-            foreach (User temp in list)
-            {
-                if (newUser.Username.Equals(temp.Username))
-                {
-                    itsValidUserName = false;
-                    break;
-                }
-            }
+        //public CustomResult TryUpdate(User user, User newUser) // поменялся метод Read(), нужно переделать!
+        //{
+        //    Task<IEnumerable<User>> task = Read();
+        //    IEnumerable<User> list = task.Result;
+        //    User parent = user;
+        //    bool itsValidUserName = true;
+        //    foreach (User temp in list)
+        //    {
+        //        if (newUser.Username.Equals(temp.Username))
+        //        {
+        //            itsValidUserName = false;
+        //            break;
+        //        }
+        //    }
 
-            if (itsValidUserName)
-            {
-                user.Username = newUser.Username;
-                user.Password = newUser.Password;
-                Update(user);
-                return new CustomResult() { Content = "Succesfully updated" };
-            } 
-            else
-            {
-                return new CustomResult() { Content = "Already used username" };
-            }
-        }
+        //    if (itsValidUserName)
+        //    {
+        //        user.Username = newUser.Username;
+        //        user.Password = newUser.Password;
+        //        Update(user);
+        //        return new CustomResult() { Content = "Succesfully updated" };
+        //    } 
+        //    else
+        //    {
+        //        return new CustomResult() { Content = "Already used username" };
+        //    }
+        //}
 
-        public async Task<List<User>> Read()
+        public async Task<IEnumerable<User>> Read(User user)
         {
-            var allData = (await _userRepository.FindAllAsync()).ToList();
-            return allData;
+            var res = (await _userRepository.FindByConditionAsync(x =>
+            x.Username == user.Username &&
+            x.Password == user.Password)).ToList();
+
+            return res;
         }
     }
 }

@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using PresentationLayer.Validators;
 using Microsoft.Extensions.Options;
-using static System.Console;
-using BLL.Services;
 
 namespace Talker
 {
@@ -66,23 +64,27 @@ namespace Talker
             WriteLine("Enter password: ");
             string password = hasher.GetHash(ReadLine());
 
+            User user = new();
+            user.Age = default;
+            user.Id = default;
+            user.Name = null;
+            user.Surname = null;
+            user.Password = hasher.GetHash(password);
+            user.Username = username;
+
             try
             {
-                Task<IEnumerable<User>> task = _userService.Read();
+                Task<IEnumerable<User>> task = _userService.Read(user);
                 IEnumerable<User> list = task.Result;
 
-                if (list != null)
+                if (list == null)
                 {
-                    foreach (var u in list)
-                    {
-                        if (u.Username == username && u.Password == password)
-                        {
-                            WriteLine("Logged in!");
-                            ActionsWithLoggedUser(hasher, u);
-                            break;
-                        }
-                    }
+                    WriteLine("User doesn't exist!");
+                    return;
                 }
+
+                WriteLine("Logged in!");
+                ActionsWithLoggedUser(hasher, user);
             }
             catch (Exception ex)
             {
@@ -125,7 +127,7 @@ namespace Talker
                     isNotValidUsername = false;
                 } else
                 {
-                    WriteLine("New username cannot be same with old");
+                    WriteLine("New username has no differences with the old one!");
                 }
             } while (isNotValidUsername);
             newUser.Username = newUsername;
@@ -136,16 +138,16 @@ namespace Talker
             do
             {
                 passwordCorrection = passwordValidatorInstance.IsItValidPassword(newPassword, _passwordValidationParameters);
-                if (!String.IsNullOrWhiteSpace(passwordCorrection))
+                if (!string.IsNullOrWhiteSpace(passwordCorrection))
                 {
                     WriteLine(passwordCorrection);
                     newPassword = ReadLine();
                 }
-            } while (!String.IsNullOrWhiteSpace(passwordCorrection));
+            } while (!string.IsNullOrWhiteSpace(passwordCorrection));
 
             newUser.Password = hasher.GetHash(newPassword);
 
-            WriteLine(_userService.TryUpdate(user, newUser).Content);
+            WriteLine(_userService.TryUpdate(user, newUser).Content); //пофиксить
         }
     }
 }

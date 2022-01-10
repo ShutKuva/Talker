@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Core.Models;
+﻿using Core.Models;
 using System.Threading.Tasks;
 
 namespace BLL.Abstractions.Interfaces
@@ -8,13 +7,13 @@ namespace BLL.Abstractions.Interfaces
     {
         void Create(User user);
 
-        void Delete(int id);
+        void Delete(User user);
 
         void Update(User user);
         //Task<IEnumerable<User>> Read(User user);
 
         Task<User> Read(User user);
 
-        //CustomResult TryUpdate(User user, User newUser); // этот метод не должен быть в интерфейсе
+        CustomResult TryUpdate(User user, User newUser); // этот метод не должен быть в интерфейсе
     }
 }

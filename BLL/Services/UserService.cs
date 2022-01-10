@@ -4,6 +4,8 @@ using Core.Models;
 using DAL.Abstractions.Interfaces;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
+using System.Linq.Expressions;
 
 namespace BLL.Services
 {
@@ -21,9 +23,9 @@ namespace BLL.Services
             _userRepository.CreateAsync(user);
         }
 
-        public void Delete(int id)
+        public void Delete(User user)
         {
-            throw new System.NotImplementedException();
+            _userRepository.DeleteAsync(user);
         }
 
         public void Update(User user)
@@ -31,33 +33,24 @@ namespace BLL.Services
             _userRepository.UpdateAsync(user);
         }
 
-        //public CustomResult TryUpdate(User user, User newUser) // поменялся метод Read(), нужно переделать!
-        //{
-        //    Task<IEnumerable<User>> task = Read();
-        //    IEnumerable<User> list = task.Result;
-        //    User parent = user;
-        //    bool itsValidUserName = true;
-        //    foreach (User temp in list)
-        //    {
-        //        if (newUser.Username.Equals(temp.Username))
-        //        {
-        //            itsValidUserName = false;
-        //            break;
-        //        }
-        //    }
+        public CustomResult TryUpdate(User user, User newUser) // переделан под новый метод Read(User user)
+        {
+            var task = Read(user);
+            var u = task.Result;
 
-        //    if (itsValidUserName)
-        //    {
-        //        user.Username = newUser.Username;
-        //        user.Password = newUser.Password;
-        //        Update(user);
-        //        return new CustomResult() { Content = "Succesfully updated" };
-        //    } 
-        //    else
-        //    {
-        //        return new CustomResult() { Content = "Already used username" };
-        //    }
-        //}
+            var usersWithSameUsername = ReadWithCondition((x) => x.Username == user.Username);
+
+            if (usersWithSameUsername != null)
+            {
+                return new CustomResult() { Content = "Already used username" }; ;
+            }
+
+            user.Username = newUser.Username;
+            user.Password = newUser.Password;
+            Update(user);
+
+            return new CustomResult() { Content = "Succesfully updated" };
+        }
 
         //public async Task<IEnumerable<User>> Read(User user) // here returns a small list of users
         //{
@@ -76,6 +69,13 @@ namespace BLL.Services
            x.Password == user.Password);
 
             return u;
+        }
+
+        public async Task<IEnumerable<User>> ReadWithCondition(Expression<Func<User, bool>> expression) // добавлен доп метод для удобства
+        {
+            var data = (await _userRepository.FindByConditionAsync(expression)).ToList();
+
+            return data;
         }
     }
 }

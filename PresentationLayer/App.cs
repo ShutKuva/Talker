@@ -5,7 +5,6 @@ using static System.Console;
 using BLL.Services;
 using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using PresentationLayer.Validators;
 using Microsoft.Extensions.Options;
 
@@ -13,7 +12,7 @@ namespace Talker
 {
     public class App
     {
-        const string REGISTER = "register",
+        const string REGISTER = "reg",
             LOGIN = "logIn",
             LOGOUT = "logOut",
             CHANGE_PARAMETERS_FORLOGIN = "cPar";
@@ -30,7 +29,6 @@ namespace Talker
         public void StartApp()
         {
             var hasher = new HashHandler();
-
             var user = new User();
             user.Id = 10;
             user.Name = "Pavel";
@@ -75,18 +73,17 @@ namespace Talker
             try
             {
                 Task<User> task = _userService.Read(user);
-                //IEnumerable<User> list = task.Result;
-
                 var u = task.Result;
 
                 if (u == null)
                 {
                     WriteLine("User doesn't exist!");
+
                     return;
                 }
 
                 WriteLine("Logged in!");
-                ActionsWithLoggedUser(hasher, user);
+                DoActionsWithLoggedUser(hasher, user);
             }
             catch (Exception ex)
             {
@@ -94,7 +91,7 @@ namespace Talker
             }
         }
 
-        void ActionsWithLoggedUser(HashHandler hasher, User user)
+        void DoActionsWithLoggedUser(HashHandler hasher, User user) 
         {
             string command = ReadLine();
             bool itsNoLogOut = true;
@@ -120,6 +117,7 @@ namespace Talker
             var newUser = new User();
             string newUsername;
             bool isNotValidUsername = true;
+
             do
             {
                 WriteLine("Write new user name:");
@@ -132,11 +130,13 @@ namespace Talker
                     WriteLine("New username has no differences with the old one!");
                 }
             } while (isNotValidUsername);
+
             newUser.Username = newUsername;
             WriteLine("Write new password:");
             var passwordValidatorInstance = new PasswordValidator();
             string newPassword = ReadLine();
             string passwordCorrection;
+
             do
             {
                 passwordCorrection = passwordValidatorInstance.IsItValidPassword(newPassword, _passwordValidationParameters);
@@ -149,7 +149,7 @@ namespace Talker
 
             newUser.Password = hasher.GetHash(newPassword);
 
-            //WriteLine(_userService.TryUpdate(user, newUser).Content); //пофиксить
+            WriteLine(_userService.TryUpdate(user, newUser).Content); 
         }
     }
 }

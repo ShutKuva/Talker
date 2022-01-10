@@ -35,7 +35,7 @@ namespace BLL.Services
 
         public CustomResult TryUpdate(User user, User newUser) // переделан под новый метод Read(User user)
         {
-            var usersWithSameUsername = ReadWithCondition((x) => x.Username == user.Username);
+            var usersWithSameUsername = ReadWithCondition((x) => x.Username == newUser.Username).Result;
 
             if (usersWithSameUsername != null)
             {
@@ -48,15 +48,6 @@ namespace BLL.Services
 
             return new CustomResult() { Content = "Succesfully updated" };
         }
-
-        //public async Task<IEnumerable<User>> Read(User user) // here returns a small list of users
-        //{
-        //    var res = (await _userRepository.FindByConditionAsync(x =>
-        //    x.Username == user.Username &&
-        //    x.Password == user.Password)).ToList();
-
-        //    return res;
-        //}
 
         public async Task<User> Read(User user) // here returns user
         {

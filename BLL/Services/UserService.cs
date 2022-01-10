@@ -35,9 +35,6 @@ namespace BLL.Services
 
         public CustomResult TryUpdate(User user, User newUser) // переделан под новый метод Read(User user)
         {
-            var task = Read(user);
-            var u = task.Result;
-
             var usersWithSameUsername = ReadWithCondition((x) => x.Username == user.Username);
 
             if (usersWithSameUsername != null)

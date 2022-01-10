@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
-using Core.Models;
+﻿using Core.Models;
 using System.Threading.Tasks;
 
 namespace BLL.Abstractions.Interfaces
 {
     public interface IUserService
     {
-        void Create(User user);
+        bool Create(User user);
 
-        void Delete(int id);
+        bool Delete(User user);
 
-        void Update(User user);
-        Task<List<User>> Read();
+        Task<User> Read(User user);
 
         CustomResult TryUpdate(User user, User newUser);
     }

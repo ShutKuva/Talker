@@ -4,6 +4,8 @@ using Core.Models;
 using DAL.Abstractions.Interfaces;
 using System.Threading.Tasks;
 using System.Linq;
+using System;
+using System.Linq.Expressions;
 
 namespace BLL.Services
 {
@@ -16,53 +18,63 @@ namespace BLL.Services
             _userRepository = userRepository;
         }
 
-        public void Create(User user)
+        public bool Create(User user)
         {
-            _userRepository.CreateAsync(user);
-        }
+            var u = Read(user);
 
-        public void Delete(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Update(User user)
-        {
-            _userRepository.UpdateAsync(user);
-        }
-
-        public CustomResult TryUpdate(User user, User newUser)
-        {
-            Task<IEnumerable<User>> task = Read();
-            IEnumerable<User> list = task.Result;
-            User parent = user;
-            bool itsValidUserName = true;
-            foreach (User temp in list)
+            if (u != null)
             {
-                if (newUser.Username.Equals(temp.Username))
-                {
-                    itsValidUserName = false;
-                    break;
-                }
+                return false;
             }
+            _userRepository.CreateAsync(user);
 
-            if (itsValidUserName)
+            return true;
+        }
+
+        public bool Delete(User user)
+        {
+            var u = Read(user).Result;
+
+            if (u == null)
             {
-                user.Username = newUser.Username;
-                user.Password = newUser.Password;
-                Update(user);
-                return new CustomResult() { Content = "Succesfully updated" };
-            } 
-            else
+                return false;
+            }
+            _userRepository.DeleteAsync(user);
+
+            return true;
+        }
+
+        public CustomResult TryUpdate(User user, User newUser) // public method for updating user
+        {
+            var usersWithSameUsername = ReadWithCondition((x) => x.Username == newUser.Username).Result;
+
+            if (usersWithSameUsername != null)
             {
                 return new CustomResult() { Content = "Already used username" };
             }
+
+            user.Username = newUser.Username;
+            user.Password = newUser.Password;
+            _userRepository.UpdateAsync(user);
+
+            return new CustomResult() { Content = "Succesfully updated" };
         }
 
-        public async Task<List<User>> Read()
+        public async Task<User> Read(User user)
         {
-            var allData = (await _userRepository.FindAllAsync()).ToList();
-            return allData;
+
+            var u = (await _userRepository.FindAllAsync()).ToList().FirstOrDefault((x) =>
+           x.Username == user.Username &&
+           x.Password == user.Password);
+
+            return u;
+        }
+
+        public async Task<IEnumerable<User>> ReadWithCondition(Expression<Func<User, bool>> expression) // добавлен доп метод для удобства
+        {
+            var data = (await _userRepository.FindByConditionAsync(expression)).ToList();
+
+            return data;
         }
     }
 }

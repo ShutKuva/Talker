@@ -5,15 +5,12 @@ namespace BLL.Abstractions.Interfaces
 {
     public interface IUserService
     {
-        void Create(User user);
+        bool Create(User user);
 
-        void Delete(User user);
-
-        void Update(User user);
-        //Task<IEnumerable<User>> Read(User user);
+        bool Delete(User user);
 
         Task<User> Read(User user);
 
-        CustomResult TryUpdate(User user, User newUser); // этот метод не должен быть в интерфейсе
+        CustomResult TryUpdate(User user, User newUser);
     }
 }

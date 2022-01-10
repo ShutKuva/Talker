@@ -18,38 +18,49 @@ namespace BLL.Services
             _userRepository = userRepository;
         }
 
-        public void Create(User user)
+        public bool Create(User user)
         {
+            var u = Read(user);
+
+            if (u != null)
+            {
+                return false;
+            }
             _userRepository.CreateAsync(user);
+
+            return true;
         }
 
-        public void Delete(User user)
+        public bool Delete(User user)
         {
+            var u = Read(user).Result;
+
+            if (u == null)
+            {
+                return false;
+            }
             _userRepository.DeleteAsync(user);
+
+            return true;
         }
 
-        public void Update(User user)
-        {
-            _userRepository.UpdateAsync(user);
-        }
-
-        public CustomResult TryUpdate(User user, User newUser) // переделан под новый метод Read(User user)
+        public CustomResult TryUpdate(User user, User newUser) // public method for updating user
         {
             var usersWithSameUsername = ReadWithCondition((x) => x.Username == newUser.Username).Result;
 
             if (usersWithSameUsername != null)
             {
-                return new CustomResult() { Content = "Already used username" }; ;
+                return new CustomResult() { Content = "Already used username" };
             }
 
             user.Username = newUser.Username;
             user.Password = newUser.Password;
-            Update(user);
+            _userRepository.UpdateAsync(user);
 
             return new CustomResult() { Content = "Succesfully updated" };
         }
 
-        public async Task<User> Read(User user) // here returns user
+        public async Task<User> Read(User user)
         {
 
             var u = (await _userRepository.FindAllAsync()).ToList().FirstOrDefault((x) =>

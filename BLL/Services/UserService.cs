@@ -59,13 +59,23 @@ namespace BLL.Services
         //    }
         //}
 
-        public async Task<IEnumerable<User>> Read(User user)
-        {
-            var res = (await _userRepository.FindByConditionAsync(x =>
-            x.Username == user.Username &&
-            x.Password == user.Password)).ToList();
+        //public async Task<IEnumerable<User>> Read(User user) // here returns a small list of users
+        //{
+        //    var res = (await _userRepository.FindByConditionAsync(x =>
+        //    x.Username == user.Username &&
+        //    x.Password == user.Password)).ToList();
 
-            return res;
+        //    return res;
+        //}
+
+        public async Task<User> Read(User user) // here returns user
+        {
+
+            var u = (await _userRepository.FindAllAsync()).ToList().FirstOrDefault((x) =>
+           x.Username == user.Username &&
+           x.Password == user.Password);
+
+            return u;
         }
     }
 }

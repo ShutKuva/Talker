@@ -74,10 +74,12 @@ namespace Talker
 
             try
             {
-                Task<IEnumerable<User>> task = _userService.Read(user);
-                IEnumerable<User> list = task.Result;
+                Task<User> task = _userService.Read(user);
+                //IEnumerable<User> list = task.Result;
 
-                if (list == null)
+                var u = task.Result;
+
+                if (u == null)
                 {
                     WriteLine("User doesn't exist!");
                     return;
@@ -147,7 +149,7 @@ namespace Talker
 
             newUser.Password = hasher.GetHash(newPassword);
 
-            WriteLine(_userService.TryUpdate(user, newUser).Content); //пофиксить
+            //WriteLine(_userService.TryUpdate(user, newUser).Content); //пофиксить
         }
     }
 }

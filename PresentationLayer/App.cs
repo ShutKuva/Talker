@@ -149,7 +149,7 @@ namespace Talker
 
             newUser.Password = hasher.GetHash(newPassword);
 
-            WriteLine(_userService.TryUpdate(user, newUser).Content); 
+            WriteLine(_userService.TryUpdate(user, newUser).Result.Content); 
         }
     }
 }

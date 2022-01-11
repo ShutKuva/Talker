@@ -4,8 +4,10 @@ namespace Core.Models
 {
     public class Room : BaseEntity
     {
-        private List<User> _users;
-        private Dictionary<User, Status> _userStatusPairs;
+        public Room()
+        {
+            _users = new List<User>();
+        }
 
         public enum Status
         {
@@ -13,13 +15,16 @@ namespace Core.Models
             Admin,
         }
 
+        public List<User> _users;
+        public Dictionary<User, Status> _userStatusPairs;
+
         public string Name { get; set; }
 
-        public string ParticipantsNumber { get; set; }
+        public string ParticipantsNumber { get; private set; }
 
-        public bool Locked { get; set; }
+        public bool Locked { get; private set; }
 
-        public string InvitationLink { get; set; }
+        public string InvitationLink { get; private set; }
 
         public List<User> Users { get => _users; set { _users = value; } }
 
@@ -27,11 +32,6 @@ namespace Core.Models
         {
             get => _userStatusPairs;
             set { _userStatusPairs = value; }
-        }
-
-        public Room()
-        {
-            _users = new List<User>();
         }
     }
 }

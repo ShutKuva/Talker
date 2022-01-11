@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BLL.Services
 {
-    public class HashHandler: IHashHandler
+    public class HashHandler : IHashHandler
     {
         public string GetHash(string data)
         {

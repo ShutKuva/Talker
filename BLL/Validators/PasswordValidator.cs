@@ -29,16 +29,16 @@ namespace BLL.Validators
             {
                 return $"Password can not be shorter than {_passwordValidationParameters.MaximumNumberOfCharacters} characters";
             }
-            if (!IsInItAllValidSymbols(password, _passwordValidationParameters))
+            if (!IsInItAllValidSymbols(password))
             {
                 return "No valid symbols";
             }
             return null;
         }
 
-        bool IsInItAllValidSymbols(string password, PasswordValidationParameters passwordValidationParameters)
+        bool IsInItAllValidSymbols(string password)
         {
-            return Regex.IsMatch(password, passwordValidationParameters.Regex);
+            return Regex.IsMatch(password, _passwordValidationParameters.Regex);
         }
     }
 }

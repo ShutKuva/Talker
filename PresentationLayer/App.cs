@@ -80,7 +80,7 @@ namespace Talker
                 WriteLine("Write your age:");
                 try
                 {
-                    guard.CheckStrict(new WrongInputDataException("Your age is no number"), !Int32.TryParse(ReadLine(), out age));
+                    guard.CheckStrict(new WrongInputDataException("Your age is no number"), Int32.TryParse(ReadLine(), out age));
                     newUser.Age = age;
                     ageFlag = false;
                 }
@@ -186,17 +186,16 @@ namespace Talker
         void GetPassword(HashHandler hasher, User newUser, Guard guard)
         {
             WriteLine("Write new password:");
-            string newPassword = ReadLine();
+            string newPassword;
             string passwordCorrection;
 
             do
             {
+                newPassword = ReadLine();
                 passwordCorrection = _passwordValidator.IsItValidPassword(newPassword);
                 try
                 {
-                    guard.CheckStrict(new WrongInputDataException(passwordCorrection), !string.IsNullOrWhiteSpace(passwordCorrection));
-                    WriteLine(passwordCorrection);
-                    newPassword = ReadLine();
+                    guard.CheckStrict(new WrongInputDataException(passwordCorrection), string.IsNullOrWhiteSpace(passwordCorrection));
                 }
                 catch (WrongInputDataException ex)
                 {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    class RoomService
+    class RoomService : IRoomService
     {
         private readonly ICrudService<Room> _roomCrudService;
 

@@ -13,7 +13,7 @@ namespace Talker
 {
     public class App
     {
-        const string REGISTER = "register",
+        const string REGISTER = "reg",
             LOGIN = "logIn",
             LOGOUT = "logOut",
             CHANGE_PARAMETERS_FOR_LOGIN = "cPar";
@@ -30,7 +30,6 @@ namespace Talker
         public void StartApp()
         {
             var hasher = new HashHandler();
-
             var user = new User();
             user.Id = 10;
             user.Name = "Pavel";
@@ -97,23 +96,28 @@ namespace Talker
             WriteLine("Enter password: ");
             string password = hasher.GetHash(ReadLine());
 
+            User user = new();
+            user.Age = default;
+            user.Id = default;
+            user.Name = null;
+            user.Surname = null;
+            user.Password = hasher.GetHash(password);
+            user.Username = username;
+
             try
             {
-                Task<IEnumerable<User>> task = _userService.Read();
-                IEnumerable<User> list = task.Result;
+                Task<User> task = _userService.Read(user);
+                var u = task.Result;
 
-                if (list != null)
+                if (u == null)
                 {
-                    foreach (var u in list)
-                    {
-                        if (u.Username == username && u.Password == password)
-                        {
-                            WriteLine("Logged in!");
-                            ActionsWithLoggedUser(hasher, u);
-                            break;
-                        }
-                    }
+                    WriteLine("User doesn't exist!");
+
+                    return;
                 }
+
+                WriteLine("Logged in!");
+                DoActionsWithLoggedUser(hasher, user);
             }
             catch (Exception ex)
             {
@@ -121,7 +125,7 @@ namespace Talker
             }
         }
 
-        void ActionsWithLoggedUser(HashHandler hasher, User user)
+        void DoActionsWithLoggedUser(HashHandler hasher, User user) 
         {
             string command;
             bool itsNoLogOut = true;
@@ -148,6 +152,7 @@ namespace Talker
             var newUser = new User();
             string newUsername;
             bool isNotValidUsername = true;
+
             do
             {
                 WriteLine("Write new user name:");
@@ -157,9 +162,10 @@ namespace Talker
                     isNotValidUsername = false;
                 } else
                 {
-                    WriteLine("New username cannot be same with old");
+                    WriteLine("New username has no differences with the old one!");
                 }
             } while (isNotValidUsername);
+
             newUser.Username = newUsername;
 
             GetPassword(hasher, newUser);
@@ -173,17 +179,19 @@ namespace Talker
             var passwordValidatorInstance = new PasswordValidator();
             string newPassword = ReadLine();
             string passwordCorrection;
+
             do
             {
                 passwordCorrection = passwordValidatorInstance.IsItValidPassword(newPassword, _passwordValidationParameters);
-                if (!String.IsNullOrWhiteSpace(passwordCorrection))
+                if (!string.IsNullOrWhiteSpace(passwordCorrection))
                 {
                     WriteLine(passwordCorrection);
                     newPassword = ReadLine();
                 }
-            } while (!String.IsNullOrWhiteSpace(passwordCorrection));
+            } while (!string.IsNullOrWhiteSpace(passwordCorrection));
 
             newUser.Password = hasher.GetHash(newPassword);
+            WriteLine(_userService.TryUpdate(user, newUser).Result.Content); 
         }
     }
 }

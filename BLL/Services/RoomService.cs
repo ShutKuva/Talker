@@ -1,42 +1,37 @@
 ﻿using BLL.Abstractions.Interfaces;
 using Core.Models;
-using DAL.Abstractions.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    class RoomService : IRoomService
+    class RoomService
     {
-        private readonly IGenericRepository<Room> _roomRepository;
+        private readonly ICrudService<Room> _roomCrudService;
 
-        public RoomService(IGenericRepository<Room> roomRepository)
+        public RoomService(ICrudService<Room> roomCrudService)
         {
-            _roomRepository = roomRepository;
+            _roomCrudService = roomCrudService;
         }
 
-        public void Create(Room room)
+        public async Task<bool> GetStatusForUser(Room room, User user, Room.Status status)
         {
-            throw new NotImplementedException();
-        }
+            var temp = _roomCrudService.Read(room.Id).Result;
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
+            if (temp == null)
+            {
+                return false;
+            }
 
-        public Task<List<Room>> Read()
-        {
-            throw new NotImplementedException();
-        }
+            var pair = room.UserStatusPairs.Where((x) => x.Key.Id == user.Id).FirstOrDefault();
+            if (pair.Key == null)
+            {
+                return false;
+            }
+            room.UserStatusPairs[user] = status;
+            await _roomCrudService.TryUpdate(room);
 
-        public void Update(Room room)
-        {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }

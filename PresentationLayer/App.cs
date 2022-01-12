@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using BLL.Validators;
 using Microsoft.Extensions.Options;
 using BLL.Abstractions.Interfaces.Validators;
+using BLL.Exceptions;
+using BLL.GuardClauses;
 
 namespace Talker
 {
@@ -33,6 +35,7 @@ namespace Talker
         public void StartApp()
         {
             var hasher = new HashHandler();
+            var guard = new Guard();
             var user = new User();
             user.Id = 10;
             user.Name = "Pavel";
@@ -51,10 +54,10 @@ namespace Talker
                 switch (command)
                 {
                     case LOGIN:
-                        Login(hasher);
+                        Login(hasher, guard);
                         break;
                     case REGISTER:
-                        Register(hasher);
+                        Register(hasher, guard);
                         break;
                     default:
                         WriteLine("Unknown command");
@@ -63,36 +66,40 @@ namespace Talker
             }
         }
 
-        void Register(HashHandler hasher)
+        void Register(HashHandler hasher, Guard guard)
         {
             var newUser = new User();
             WriteLine("Write your name:");
             newUser.Name = ReadLine();
             WriteLine("Write your surname:");
             newUser.Surname = ReadLine();
+
             int age;
             bool ageFlag = true;
             do {
                 WriteLine("Write your age:");
-                if (!Int32.TryParse(ReadLine(), out age))
+                try
                 {
-                    WriteLine("Your age is no number");
-                } else
-                {
+                    guard.CheckStrict(new WrongInputDataException("Your age is no number"), !Int32.TryParse(ReadLine(), out age));
+                    newUser.Age = age;
                     ageFlag = false;
                 }
+                catch (WrongInputDataException ex)
+                {
+                    WriteLine(ex.Message);
+                }
             } while (ageFlag);
-            newUser.Age = age;
+
             WriteLine("Write your username:");
             newUser.Username = ReadLine();
-            GetPassword(hasher, newUser);
+            GetPassword(hasher, newUser, guard);
             var random = new Random();
             newUser.Id = random.Next(10000, 99999);
 
             _crudService.Create(newUser);
         }
 
-        void Login(HashHandler hasher)
+        void Login(HashHandler hasher, Guard guard)
         {
             WriteLine("Enter username: ");
             string username = ReadLine();
@@ -108,17 +115,16 @@ namespace Talker
             try
             {
                 Task<User> task = _userService.ReadUserWithCondition(user => user.Username == loginUser.Username && user.Password == loginUser.Password);
-                User u = task.Result;
+                User user = task.Result;
 
-                if (u == null)
-                {
-                    WriteLine("User doesn't exist!");
-
-                    return;
-                }
+                guard.CheckStrict(new WrongInputDataException("User doesn't exist!"), user is not null);
 
                 WriteLine("Logged in!");
-                DoActionsWithLoggedUser(hasher, u);
+                DoActionsWithLoggedUser(hasher, user, guard);
+            }
+            catch (WrongInputDataException ex)
+            {
+                WriteLine(ex.Message);
             }
             catch (Exception ex)
             {
@@ -126,7 +132,7 @@ namespace Talker
             }
         }
 
-        void DoActionsWithLoggedUser(HashHandler hasher, User user) 
+        void DoActionsWithLoggedUser(HashHandler hasher, User user, Guard guard) 
         {
             string command;
             bool itsNoLogOut = true;
@@ -137,7 +143,7 @@ namespace Talker
                 switch (command)
                 {
                     case CHANGE_PARAMETERS_FOR_LOGIN:
-                        ChangeLoginParameters(hasher, user);
+                        ChangeLoginParameters(hasher, user, guard);
                         itsNoLogOut = false;
                         break;
                     case LOGOUT:
@@ -148,7 +154,7 @@ namespace Talker
             }
         }
 
-        void ChangeLoginParameters(HashHandler hasher, User user)
+        void ChangeLoginParameters(HashHandler hasher, User user, Guard guard)
         {
             string newUsername;
             bool isNotValidUsername = true;
@@ -157,28 +163,27 @@ namespace Talker
             {
                 WriteLine("Write new user name:");
                 newUsername = ReadLine();
-                if (!newUsername.Equals(user.Username))
+                try
                 {
+                    guard.CheckStrict(new WrongInputDataException("New username has no differences with the old one!"), !newUsername.Equals(user.Username));
+
+                    user.Username = newUsername;
+
+                    GetPassword(hasher, user, guard);
+
+                    guard.CheckStrict(new WrongInputDataException("User with this name already exist"), _crudService.TryUpdate(user).Result);
+
+                    WriteLine("Succesfully updated");
                     isNotValidUsername = false;
-                } else
+                }
+                catch (WrongInputDataException ex)
                 {
-                    WriteLine("New username has no differences with the old one!");
+                    WriteLine(ex.Message);
                 }
             } while (isNotValidUsername);
-
-            user.Username = newUsername;
-
-            GetPassword(hasher, user);
-
-            if (_crudService.TryUpdate(user).Result) {
-                WriteLine("Succesfully updated");
-            } else
-            {
-                WriteLine("User with this name already exist");
-            }
         }
 
-        void GetPassword(HashHandler hasher, User newUser)
+        void GetPassword(HashHandler hasher, User newUser, Guard guard)
         {
             WriteLine("Write new password:");
             string newPassword = ReadLine();
@@ -187,10 +192,15 @@ namespace Talker
             do
             {
                 passwordCorrection = _passwordValidator.IsItValidPassword(newPassword);
-                if (!string.IsNullOrWhiteSpace(passwordCorrection))
+                try
                 {
+                    guard.CheckStrict(new WrongInputDataException(passwordCorrection), !string.IsNullOrWhiteSpace(passwordCorrection));
                     WriteLine(passwordCorrection);
                     newPassword = ReadLine();
+                }
+                catch (WrongInputDataException ex)
+                {
+                    WriteLine(ex.Message);
                 }
             } while (!string.IsNullOrWhiteSpace(passwordCorrection));
 

@@ -76,11 +76,13 @@ namespace Core.Models
 
         public Room(params RoomSettings[] settings): this()
         {
-            foreach (var setting in settings)
-            {
-                if (!this.settings.Contains(setting))
-                    this.settings.Add(setting);
-            }
+            // foreach (var setting in settings)
+            // {
+            //     if (!this.settings.Contains(setting))
+            //         this.settings.Add(setting);
+            // }
+            
+            UpdateSettings(settings);
         }
 
         public void HandleCapalities(List<Capability> userCapabilites) // needs to be async
@@ -129,5 +131,30 @@ namespace Core.Models
 
             return true;
         }
+        public void UpdateSettings(params RoomSettings[] settings)
+        {
+            foreach (var setting in settings)
+            {
+                if (!this.settings.Contains(setting))
+                {
+                    switch (setting)
+                    {
+                        case RoomSettings.Private:
+                            if (!this.settings.Contains((RoomSettings.Public)))
+                            {
+                                this.settings.Add(setting);
+                            }
+                            break;
+                        case RoomSettings.Public:
+                            if (!this.settings.Contains((RoomSettings.Private)))
+                            {
+                                this.settings.Add(setting);
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+
     }
 }

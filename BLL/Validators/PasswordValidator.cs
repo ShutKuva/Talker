@@ -27,6 +27,7 @@ namespace BLL.Validators
             }
             if (password.Length > _passwordValidationParameters.MaximumNumberOfCharacters)
             {
+                
                 return $"Password can not be shorter than {_passwordValidationParameters.MaximumNumberOfCharacters} characters";
             }
             if (!IsInItAllValidSymbols(password, _passwordValidationParameters))

@@ -138,7 +138,6 @@ namespace Talker
                 {
                     case CHANGE_PARAMETERS_FOR_LOGIN:
                         ChangeLoginParameters(hasher, user);
-                        itsNoLogOut = false;
                         break;
                     case LOGOUT:
                         WriteLine("Good bye!");

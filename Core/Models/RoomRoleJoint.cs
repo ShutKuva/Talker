@@ -2,19 +2,18 @@
 {
     public class RoomRoleJoint : BaseEntity
     {
-        public int ID;
-        public int RoomID;
-        public string RoleName;
-        public int PermissionID;
+        public int _roomId;
+        public int _roleId;
+        public string _roleName;
+        public int _roleRights;
 
         public RoomRoleJoint() { }
 
-        public RoomRoleJoint(int id, int roomId, string roleName, int permissionId)
+        public RoomRoleJoint(int roomId, string roleName, int roleRights)
         {
-            ID = id;
-            RoomID = roomId;
-            RoleName = roleName;
-            PermissionID = permissionId;
+            _roomId = roomId;
+            _roleName = roleName;
+            _roleRights = roleRights;
         }
     }
 }

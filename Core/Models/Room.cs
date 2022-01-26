@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Core.Models
 {
@@ -6,6 +7,7 @@ namespace Core.Models
     {
         public int ID;
         public string Name;
+        public List<User> Users;
         public DateTime CreatedAt;
 
         public Room() { }
@@ -15,6 +17,11 @@ namespace Core.Models
             ID = id;
             Name = name;
             CreatedAt = createdAt;
+        }
+
+        public void CreateRole()
+        {
+            throw new NotImplementedException();
         }
     }
 }

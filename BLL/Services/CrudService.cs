@@ -20,7 +20,7 @@ namespace BLL.Services
 
         public async Task<bool> Create(T entity)
         {
-            var u = Read(entity.Id).Result;
+            var u = ReadWithCondition(temp => temp.Id == entity.Id).Result;
 
             if (u != null)
             {
@@ -33,7 +33,7 @@ namespace BLL.Services
 
         public async Task<bool> Delete(int id)
         {
-            var u = Read(id).Result;
+            var u = (await ReadWithCondition(temp => temp.Id == id)).FirstOrDefault();
 
             if (u == null)
             {
@@ -62,7 +62,7 @@ namespace BLL.Services
 
         public async Task<bool> TryUpdate(T entity) // public method for updating user
         {
-            var usersWithSameUsername = Read(entity.Id).Result;
+            var usersWithSameUsername = await ReadWithCondition(temp => temp.Id == entity.Id);
 
             if (usersWithSameUsername != null)
             {
@@ -73,6 +73,7 @@ namespace BLL.Services
             return true;
         }
 
+        /* По факту поиск по id - тот же поиск по состоянию, так зачем его оставлять
         public async Task<T> Read(int id)
         {
             var u = (await _entityRepository.FindAllAsync()).ToList().FirstOrDefault((x) => 
@@ -80,6 +81,8 @@ namespace BLL.Services
 
             return u;
         }
+        */
+
         public async Task<IEnumerable<T>> ReadWithCondition(Expression<Func<T, bool>> expression) // добавлен доп метод для удобства
         {
             var data = (await _entityRepository.FindByConditionAsync(expression)).ToList();

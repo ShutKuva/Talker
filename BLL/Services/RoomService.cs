@@ -16,7 +16,7 @@ namespace BLL.Services
 
         public async Task<bool> GetStatusForUser(Room room, User user, Room.Status status)
         {
-            var temp = _roomCrudService.Read(room.Id).Result;
+            var temp = _roomCrudService.ReadWithCondition(temp => temp.Id == room.Id).Result;
 
             if (temp == null)
             {

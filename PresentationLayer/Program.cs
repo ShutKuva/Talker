@@ -4,7 +4,7 @@ using Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Talker
+namespace PresentationLayer
 {
     class Program
     {

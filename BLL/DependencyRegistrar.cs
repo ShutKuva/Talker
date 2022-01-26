@@ -12,9 +12,9 @@ namespace BLL
         public static void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped(typeof(ICrudService<>), typeof(CrudService<>));
-            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IPasswordValidator, PasswordValidator>();
+            services.AddScoped<IHashHandler, HashHandler>();
             DAL.DependencyRegistrar.ConfigureServices(services);
         }
     }

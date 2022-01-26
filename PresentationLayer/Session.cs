@@ -9,8 +9,8 @@ namespace PresentationLayer
 {
     public enum Location
     {
-        NoLogged,
-        InMain,
+        Unlogged,
+        Main,
         InRoom,
     }
 
@@ -22,7 +22,7 @@ namespace PresentationLayer
 
         public Session()
         {
-            MyLocation = Location.NoLogged;
+            MyLocation = Location.Unlogged;
             LoggedUser = null;
         }
     }

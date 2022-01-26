@@ -26,12 +26,12 @@ namespace PresentationLayer
 
             _allOperations = new Dictionary<Location, Dictionary<string, IPLService>>
             {
-                [Location.NoLogged] = new Dictionary<string, IPLService>
+                [Location.Unlogged] = new Dictionary<string, IPLService>
                 {
                     ["reg"] = new RegisterNewUser(crudService, hashHandler, passwordValidator),
                     ["logIn"] = new Login(hashHandler, crudService, _openedSession)
                 },
-                [Location.InMain] = new Dictionary<string, IPLService>
+                [Location.Main] = new Dictionary<string, IPLService>
                 {
                     ["cPar"] = new ChangingAuthorizationParameters(crudService, hashHandler, passwordValidator, _openedSession),
                     ["logOut"] = new Logout(_openedSession)

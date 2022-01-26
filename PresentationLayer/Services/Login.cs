@@ -43,7 +43,7 @@ namespace PresentationLayer.Services
             } else
             {
                 _openedSession.LoggedUser = u;
-                _openedSession.MyLocation = Location.InMain;
+                _openedSession.MyLocation = Location.Main;
                 Console.WriteLine("Logged in!");
             }
         }

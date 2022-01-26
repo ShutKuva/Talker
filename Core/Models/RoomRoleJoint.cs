@@ -1,6 +1,6 @@
 ﻿namespace Core.Models
 {
-    public class RoomRoleJoint
+    public class RoomRoleJoint : BaseEntity
     {
         public int ID;
         public int RoomID;

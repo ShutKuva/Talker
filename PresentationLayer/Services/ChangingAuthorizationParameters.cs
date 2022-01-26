@@ -32,20 +32,26 @@ namespace PresentationLayer.Services
 
             GetPassword(tempUser, _hashHandler, _passwordValidator);
 
-            bool succes;
+            User succes;
             do
             {
-                succes = await _crudService.TryUpdate(_openedSession.LoggedUser);
-                if (succes)
+                succes = (await _crudService.ReadWithCondition(temp => tempUser.Username == temp.Username)).FirstOrDefault();
+                if (succes is null)
                 {
-                    Console.WriteLine("Succesfully updated");
+                    if (await _crudService.TryUpdate(tempUser))
+                    {
+                        Console.WriteLine("Succesfully updated");
+                    } else
+                    {
+                        Console.WriteLine("Something went wrong");
+                    }
                 }
                 else
                 {
                     Console.WriteLine("User with this name already exist");
                     ChangeUsername(tempUser);
                 }
-            } while (!succes);
+            } while (succes is not null);
             _openedSession.LoggedUser = tempUser;
         }
 

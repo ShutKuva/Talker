@@ -29,7 +29,9 @@ namespace BLL.Services
                 Directory.CreateDirectory(_dbDirectory);
             }
 
-            foreach (var type in assembly.GetTypes())
+            var types = assembly.GetTypes();
+
+            foreach (var type in types)
             {
                 var attribute = type.GetCustomAttribute<AutoDBAttribute>();
 
@@ -38,7 +40,9 @@ namespace BLL.Services
                 if (attribute != null && directoryInfo.GetFiles().Where((x) =>
                 x.Name.Contains(type.GetType().Name)).FirstOrDefault() == null)
                 {
-                    File.Create(Path.Combine(_dbDirectory, type.GetType().Name + "Db.json"));
+                    var path = Path.Combine(_dbDirectory, type.GetType().Name + "Db.json");
+                    File.Create(path);
+                    File.WriteAllText("[]", path);
                 }
             }
         }

@@ -5,8 +5,10 @@ using static System.Console;
 using BLL.Services;
 using System;
 using System.Threading.Tasks;
-using PresentationLayer.Validators;
+using System.Collections.Generic;
+using BLL.Validators;
 using Microsoft.Extensions.Options;
+using BLL.Abstractions.Interfaces.Validators;
 
 namespace Talker
 {
@@ -15,15 +17,17 @@ namespace Talker
         const string REGISTER = "reg",
             LOGIN = "logIn",
             LOGOUT = "logOut",
-            CHANGE_PARAMETERS_FORLOGIN = "cPar";
+            CHANGE_PARAMETERS_FOR_LOGIN = "cPar";
 
+        private readonly ICrudService<User> _crudService;
         private readonly IUserService _userService;
-        private readonly PasswordValidationParameters _passwordValidationParameters;
+        private readonly IPasswordValidator _passwordValidator;
 
-        public App(IUserService userService, IOptions<PasswordValidationParameters> passwordValidationParameters)
+        public App(ICrudService<User> crudService, IUserService userService, IPasswordValidator passwordValidator)
         {
             _userService = userService;
-            _passwordValidationParameters = passwordValidationParameters?.Value ?? throw new ArgumentNullException(nameof(passwordValidationParameters));
+            _crudService = crudService;
+            _passwordValidator = passwordValidator;
         }
         
         public void StartApp()
@@ -37,22 +41,55 @@ namespace Talker
             user.Age = 63;
             user.Password = hasher.GetHash("12345");
 
-            _userService.Create(user);
+            _crudService.Create(user);
 
-            string command = ReadLine();
+            string command;
 
             while (true)
             {
-                switch(command)
+                command = ReadLine();
+                switch (command)
                 {
                     case LOGIN:
                         Login(hasher);
+                        break;
+                    case REGISTER:
+                        Register(hasher);
                         break;
                     default:
                         WriteLine("Unknown command");
                         break;
                 }
             }
+        }
+
+        void Register(HashHandler hasher)
+        {
+            var newUser = new User();
+            WriteLine("Write your name:");
+            newUser.Name = ReadLine();
+            WriteLine("Write your surname:");
+            newUser.Surname = ReadLine();
+            int age;
+            bool ageFlag = true;
+            do {
+                WriteLine("Write your age:");
+                if (!Int32.TryParse(ReadLine(), out age))
+                {
+                    WriteLine("Your age is no number");
+                } else
+                {
+                    ageFlag = false;
+                }
+            } while (ageFlag);
+            newUser.Age = age;
+            WriteLine("Write your username:");
+            newUser.Username = ReadLine();
+            GetPassword(hasher, newUser);
+            var random = new Random();
+            newUser.Id = random.Next(10000, 99999);
+
+            _crudService.Create(newUser);
         }
 
         void Login(HashHandler hasher)
@@ -62,18 +99,16 @@ namespace Talker
             WriteLine("Enter password: ");
             string password = hasher.GetHash(ReadLine());
 
-            User user = new();
-            user.Age = default;
-            user.Id = default;
-            user.Name = null;
-            user.Surname = null;
-            user.Password = hasher.GetHash(password);
-            user.Username = username;
+            User loginUser = new User()
+            {
+                Username = username,
+                Password = password
+            };
 
             try
             {
-                Task<User> task = _userService.Read(user);
-                var u = task.Result;
+                Task<User> task = _userService.ReadUserWithCondition(user => user.Username == loginUser.Username && user.Password == loginUser.Password);
+                User u = task.Result;
 
                 if (u == null)
                 {
@@ -83,7 +118,7 @@ namespace Talker
                 }
 
                 WriteLine("Logged in!");
-                DoActionsWithLoggedUser(hasher, user);
+                DoActionsWithLoggedUser(hasher, u);
             }
             catch (Exception ex)
             {
@@ -93,16 +128,16 @@ namespace Talker
 
         void DoActionsWithLoggedUser(HashHandler hasher, User user) 
         {
-            string command = ReadLine();
+            string command;
             bool itsNoLogOut = true;
 
             while (itsNoLogOut)
             {
+                command = ReadLine();
                 switch (command)
                 {
-                    case CHANGE_PARAMETERS_FORLOGIN:
+                    case CHANGE_PARAMETERS_FOR_LOGIN:
                         ChangeLoginParameters(hasher, user);
-                        itsNoLogOut = false;
                         break;
                     case LOGOUT:
                         WriteLine("Good bye!");
@@ -114,7 +149,6 @@ namespace Talker
 
         void ChangeLoginParameters(HashHandler hasher, User user)
         {
-            var newUser = new User();
             string newUsername;
             bool isNotValidUsername = true;
 
@@ -131,15 +165,27 @@ namespace Talker
                 }
             } while (isNotValidUsername);
 
-            newUser.Username = newUsername;
+            user.Username = newUsername;
+
+            GetPassword(hasher, user);
+
+            if (_crudService.TryUpdate(user).Result) {
+                WriteLine("Succesfully updated");
+            } else
+            {
+                WriteLine("User with this name already exist");
+            }
+        }
+
+        void GetPassword(HashHandler hasher, User newUser)
+        {
             WriteLine("Write new password:");
-            var passwordValidatorInstance = new PasswordValidator();
             string newPassword = ReadLine();
             string passwordCorrection;
 
             do
             {
-                passwordCorrection = passwordValidatorInstance.IsItValidPassword(newPassword, _passwordValidationParameters);
+                passwordCorrection = _passwordValidator.IsItValidPassword(newPassword);
                 if (!string.IsNullOrWhiteSpace(passwordCorrection))
                 {
                     WriteLine(passwordCorrection);
@@ -148,8 +194,6 @@ namespace Talker
             } while (!string.IsNullOrWhiteSpace(passwordCorrection));
 
             newUser.Password = hasher.GetHash(newPassword);
-
-            WriteLine(_userService.TryUpdate(user, newUser).Result.Content); 
         }
     }
 }

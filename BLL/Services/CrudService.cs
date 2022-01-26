@@ -80,7 +80,6 @@ namespace BLL.Services
 
             return u;
         }
-
         public async Task<IEnumerable<T>> ReadWithCondition(Expression<Func<T, bool>> expression) // добавлен доп метод для удобства
         {
             var data = (await _entityRepository.FindByConditionAsync(expression)).ToList();

@@ -11,7 +11,7 @@ namespace BLL.Services.Roles
     {
         public RoleRights Value { get; private set; }
         public BitOperationsHelper() => this.Value = RoleRights.None;
-        public BitOperationsHelper(RoleRights value) => this.Value = value;
+        public BitOperationsHelper(RoleRights value) => this.Value = value; //consider adding 'params'
         public void Add(RoleRights value) => this.Value |= value;
         public void Remove(RoleRights value) => this.Value ^= value;
         public bool Contains(RoleRights value) => (this.Value & value) == value;

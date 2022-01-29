@@ -13,6 +13,7 @@ namespace BLL
             services.AddScoped(typeof(ICrudService<>), typeof(CrudService<>));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IRoomUserJointService, RoomUserJointService>();
             services.AddScoped<IRoomRoleJointService, RoomRoleJointService>();
             services.AddScoped<IPasswordValidator, PasswordValidator>();
             DAL.DependencyRegistrar.ConfigureServices(services);

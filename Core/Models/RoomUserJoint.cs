@@ -1,22 +1,20 @@
 namespace Core.Models
 {
-    public class RoomUserJoint
+    public class RoomUserJoint : BaseEntity
     {
-        public int ID;
-        public int RoomID;
-        public int UserID;
-        public int StatusID;
-        public int RoomRoleID; // ?
+        public int _roomId;
+        public int _userId;
+        public string _roleName;
+        public int _roomRoleId;
 
         public RoomUserJoint() { }
 
-        public RoomUserJoint(int id, int roomId, int userId, int statusId, int roomRoleId)
+        public RoomUserJoint(int roomId, int userId, string roleName, int roomRoleId)
         {
-            ID = id;
-            RoomID = roomId;
-            UserID = userId;
-            StatusID = statusId;
-            RoomRoleID = roomRoleId;
+            _roomId = roomId;
+            _userId = userId;
+            _roleName = roleName;
+            _roomRoleId = roomRoleId;
         }
     }
 }

@@ -2,7 +2,6 @@
 using BLL.Abstractions.Interfaces.Validators;
 using BLL.Services;
 using BLL.Validators;
-using Core.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BLL

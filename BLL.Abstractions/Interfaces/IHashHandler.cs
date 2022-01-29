@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace BLL.Abstractions.Interfaces
+﻿namespace BLL.Abstractions.Interfaces
 {
     public interface IHashHandler
     {

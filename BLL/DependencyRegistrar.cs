@@ -2,6 +2,7 @@
 using BLL.Abstractions.Interfaces.Validators;
 using BLL.Services;
 using BLL.Validators;
+using Core.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BLL
@@ -13,6 +14,7 @@ namespace BLL
             services.AddScoped(typeof(ICrudService<>), typeof(CrudService<>));
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoomService, RoomService>();
+            services.AddTransient<Room>();
             services.AddScoped<IRoomUserJointService, RoomUserJointService>();
             services.AddScoped<IRoomRoleJointService, RoomRoleJointService>();
             services.AddScoped<IPasswordValidator, PasswordValidator>();

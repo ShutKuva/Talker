@@ -23,7 +23,7 @@ namespace PesentationLayer.Services
             _passwordValidator = passwordValidator;
         }
 
-        public override async Task Execute()
+        public override async Task Execute(string[] command)
         {
             var newUser = new User();
             Console.WriteLine("Write your name:");

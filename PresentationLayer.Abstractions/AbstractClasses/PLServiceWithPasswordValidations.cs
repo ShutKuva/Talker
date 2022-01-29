@@ -12,7 +12,7 @@ namespace PresentationLayer.Abstractions.AbstractClasses
 {
     public abstract class PLServiceWithPasswordValidations : IPLService
     {
-        public abstract Task Execute();
+        public abstract Task Execute(string[] command);
 
         protected void GetPassword(User newUser, IHashHandler hashHandler, IPasswordValidator passwordValidator)
         {

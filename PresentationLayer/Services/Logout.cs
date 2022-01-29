@@ -16,7 +16,7 @@ namespace PresentationLayer.Services
             _openSession = openSession;
         }
 
-        public Task Execute()
+        public Task Execute(string[] command)
         {
             _openSession.MyLocation = Location.Unlogged;
             Console.WriteLine("Good bye!");

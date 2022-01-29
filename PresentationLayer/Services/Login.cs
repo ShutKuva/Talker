@@ -22,7 +22,7 @@ namespace PresentationLayer.Services
             _openedSession = openSession;
         }
 
-        public async Task Execute()
+        public async Task Execute(string[] command)
         {
             Console.WriteLine("Enter username: ");
             string username = Console.ReadLine();

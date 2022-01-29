@@ -25,7 +25,7 @@ namespace PresentationLayer.Services
             _openedSession = openSession;
         }
 
-        public override async Task Execute()
+        public override async Task Execute(string[] command)
         {
             User tempUser = new User(_openedSession.LoggedUser);
             ChangeUsername(tempUser);

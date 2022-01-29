@@ -16,8 +16,6 @@ namespace PresentationLayer
 {
     public class App
     {
-        const string LOGOUT = "logOut";
-
         private readonly Session _openedSession = new Session();
         private readonly Dictionary<Location, Dictionary<string, IPLService>> _allOperations;
 
@@ -41,19 +39,19 @@ namespace PresentationLayer
         
         public void StartApp()
         {
-            string command;
+            string[] command;
             Dictionary<string, IPLService> dictionaryWithOperations;
             IPLService service;
 
             while (true)
             {
                 _allOperations.TryGetValue(_openedSession.MyLocation, out dictionaryWithOperations);
-                command = Console.ReadLine();
-                if (dictionaryWithOperations.TryGetValue(command, out service))
+                command = Console.ReadLine().Split(" ");
+                if (dictionaryWithOperations.TryGetValue(command[0], out service))
                 {
                     try 
                     {
-                        service.Execute();
+                        service.Execute(command);
                     }
                     catch (Exception ex)
                     {

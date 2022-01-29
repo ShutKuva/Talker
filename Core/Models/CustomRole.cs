@@ -13,11 +13,11 @@ namespace Core.Models
         public enum RoleRights
         {
             None = 0,
-            InvitingToRoom = 1,
-            DelitingFromRoom = 2,
-            Banning = 4,
-            DelitingOthersMessages = 8,
-            DelitingRoom = 16,
+            CanInviteUsers = 1,
+            CanDeleteUsers = 2,
+            CanBanUsers = 4,
+            CanDeleteForeignMessages = 8,
+            CanDeleteRoom = 16,
         }
 
         public string RoleName { get; private set; }

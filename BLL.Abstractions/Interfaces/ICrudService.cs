@@ -1,4 +1,7 @@
 ﻿using Core.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace BLL.Abstractions.Interfaces
@@ -9,7 +12,7 @@ namespace BLL.Abstractions.Interfaces
 
         Task<bool> Delete(int id);
 
-        Task<T> Read(int id);
+        Task<IEnumerable<T>> ReadWithCondition(Expression<Func<T, bool>> condition);
 
         Task<bool> TryUpdate(T entity);
     }

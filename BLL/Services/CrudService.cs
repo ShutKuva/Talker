@@ -18,14 +18,15 @@ namespace BLL.Services
             _entityRepository = entityRepository;
         }
 
-        public async Task<bool> Create(T entity)
+        public async Task<bool> Create(T entity, Expression<Func<T, bool>> predicate)
         {
-            var u = ReadWithCondition(temp => temp.Id == entity.Id).Result.FirstOrDefault();
+            var u = (await ReadWithCondition(predicate)).FirstOrDefault();
 
             if (u != null)
             {
                 return false;
             }
+
             await _entityRepository.CreateAsync(entity);
 
             return true;

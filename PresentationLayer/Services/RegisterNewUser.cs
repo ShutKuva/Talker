@@ -57,7 +57,7 @@ namespace PesentationLayer.Services
 
             do
             {
-                success = await _crudService.Create(newUser);
+                success = await _crudService.Create(newUser, dbUser => newUser.Username == dbUser.Username);
                 if (success)
                 {
                     Console.WriteLine("Succesfully registered!");

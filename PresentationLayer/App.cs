@@ -11,6 +11,7 @@ using BLL.Abstractions.Interfaces.Validators;
 using PesentationLayer.Services;
 using PresentationLayer.Abstractions.Interfaces;
 using PresentationLayer.Services;
+using System.Text;
 
 namespace PresentationLayer
 {
@@ -46,6 +47,7 @@ namespace PresentationLayer
             while (true)
             {
                 _allOperations.TryGetValue(_openedSession.MyLocation, out dictionaryWithOperations);
+                HelpCommands();
                 command = Console.ReadLine().Split(" ");
                 if (dictionaryWithOperations.TryGetValue(command[0], out service))
                 {
@@ -61,6 +63,33 @@ namespace PresentationLayer
                 {
                     Console.WriteLine("Unknown command");
                 }
+            }
+        }
+
+        public void HelpCommands()
+        {
+            StringBuilder tempString = new StringBuilder();
+            tempString.Append("Write command (you can use ");
+            var tempDirectory = new Dictionary<string, IPLService>();
+            if(_allOperations.TryGetValue(_openedSession.MyLocation, out tempDirectory))
+            {
+                int i = 0;
+                foreach (string tempKey in tempDirectory.Keys)
+                {
+                    if (i == tempDirectory.Keys.Count - 1)
+                    {
+                        tempString.Append("\"" + tempKey + "\")");
+                    } else
+                    {
+                        tempString.Append("\"" + tempKey + "\", ");
+                    }
+                    i++;
+                }
+
+                Console.WriteLine(tempString.ToString());
+            } else
+            {
+                Console.WriteLine("Something went wrong");
             }
         }
     }

@@ -16,14 +16,11 @@ namespace PresentationLayer
 {
     public class App
     {
-        const string LOGOUT = "logOut";
-
         private readonly Session _openedSession = new Session();
         private readonly Dictionary<Location, Dictionary<string, IPLService>> _allOperations;
 
         public App(ICrudService<User> crudService, IHashHandler hashHandler, IPasswordValidator passwordValidator)
         {
-
             _allOperations = new Dictionary<Location, Dictionary<string, IPLService>>
             {
                 [Location.Unlogged] = new Dictionary<string, IPLService>

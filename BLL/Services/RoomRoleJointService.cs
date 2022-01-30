@@ -8,20 +8,18 @@ namespace BLL.Services
 {
     public class RoomRoleJointService : IRoomRoleJointService
     {
-        private readonly Room _room;
         private readonly IGenericRepository<RoomRoleJoint> _roomRoleJointRepository;
 
-        public RoomRoleJointService(Room room, IGenericRepository<RoomRoleJoint> roomRoleJointRepository)
+        public RoomRoleJointService(IGenericRepository<RoomRoleJoint> roomRoleJointRepository)
         {
-            _room = room;
             _roomRoleJointRepository = roomRoleJointRepository;
         }
 
-        public async Task<bool> CreateNewRole(CustomRole customRole)
+        public async Task<bool> CreateNewRole(Room room, CustomRole customRole)
         {
             if (customRole != null && customRole.RoleName != null)
             {
-                RoomRoleJoint roomRoleJoint = new RoomRoleJoint(_room.Id, customRole.RoleName, (int)customRole.CurrentRoleRights);
+                RoomRoleJoint roomRoleJoint = new RoomRoleJoint(room.Id, customRole.RoleName, (int)customRole.CurrentRoleRights);
                 await _roomRoleJointRepository.CreateAsync(roomRoleJoint);
 
                 return true;
@@ -30,9 +28,9 @@ namespace BLL.Services
             return false;
         }
 
-        public async Task<bool> ModifyRole(int customRoleId, string newRoleName = null, CustomRole.RoleRights? newRoleRights = null)
+        public async Task<bool> ModifyRole(Room room, int customRoleId, string newRoleName = null, CustomRole.RoleRights? newRoleRights = null)
         {
-            RoomRoleJoint customRole = await this.GetRole(customRoleId);
+            RoomRoleJoint customRole = await this.GetRole(room, customRoleId);
 
             if (customRole != null)
             {
@@ -54,9 +52,9 @@ namespace BLL.Services
             return false;
         }
 
-        public async Task<bool> DeleteRole(int customRoleId)
+        public async Task<bool> DeleteRole(Room room, int customRoleId)
         {
-            RoomRoleJoint customRole = await this.GetRole(customRoleId);
+            RoomRoleJoint customRole = await this.GetRole(room, customRoleId);
 
             if (customRole != null)
             {
@@ -68,10 +66,10 @@ namespace BLL.Services
             return false;
         }
 
-        public async Task<RoomRoleJoint> GetRole(int customRoleId)
+        public async Task<RoomRoleJoint> GetRole(Room room, int customRoleId)
         {
             RoomRoleJoint customRole = (await _roomRoleJointRepository
-                .FindByConditionAsync(x => x._roomId == _room.Id && x._roleId == customRoleId))
+                .FindByConditionAsync(x => x._roomId == room.Id && x._roleId == customRoleId))
                 .FirstOrDefault();
 
             return customRole;

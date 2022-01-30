@@ -43,7 +43,9 @@ namespace PesentationLayer.Services
                 {
                     ageFlag = false;
                 }
-            } while (ageFlag);
+            }
+            while (ageFlag);
+
             newUser.Age = age;
             Console.WriteLine("Write your username:");
             newUser.Username = Console.ReadLine();

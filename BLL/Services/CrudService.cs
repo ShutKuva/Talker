@@ -20,7 +20,7 @@ namespace BLL.Services
 
         public async Task<bool> Create(T entity)
         {
-            var u = ReadWithCondition(temp => temp.Id == entity.Id).Result;
+            var u = ReadWithCondition(temp => temp.Id == entity.Id).Result.FirstOrDefault();
 
             if (u != null)
             {

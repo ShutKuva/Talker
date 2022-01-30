@@ -29,9 +29,7 @@ namespace BLL.Services
         {
             IEnumerable<User> data = await ReadWithCondition(expression);
 
-            //
-
-            return data.First();
+            return data.FirstOrDefault();
         }
     }
 }

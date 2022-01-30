@@ -15,11 +15,11 @@ namespace PresentationLayer.Services
         private readonly ICrudService<User> _crudService;
         private readonly Session _openedSession;
 
-        public Login(IHashHandler hashHandler, ICrudService<User> crudService, Session openSession)
+        public Login(IHashHandler hashHandler, ICrudService<User> crudService, Session openedSession)
         {
             _hashHandler = hashHandler;
             _crudService = crudService;
-            _openedSession = openSession;
+            _openedSession = openedSession;
         }
 
         public async Task Execute(string[] command)

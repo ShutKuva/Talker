@@ -50,8 +50,7 @@ namespace PesentationLayer.Services
             Console.WriteLine("Write your username:");
             newUser.Username = Console.ReadLine();
             GetPassword(newUser, _hashHandler, _passwordValidator);
-            var random = new Random();
-            newUser.Id = random.Next(10000, 99999);
+            newUser.Id = new Random().Next(10000, 99999);
 
             bool success;
 

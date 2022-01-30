@@ -2,14 +2,13 @@
 using System;
 using System.IO;
 using System.Linq;
-using BLL.Abstractions.Interfaces;
 
-namespace BLL.Services
+namespace Core.DbCreator
 {
-    public class DbAutoCreator: IDbAutoCreator
+    public class DbAutoCreator : IDbAutoCreator
     {
         [AttributeUsage(AttributeTargets.Class)]
-        public class AutoDBAttribute: Attribute { }
+        public class AutoDBAttribute : Attribute { }
 
         private readonly string _dbDirectory;
 
@@ -20,7 +19,7 @@ namespace BLL.Services
 
         public void GenerateDb()
         {
-            var assembly = Assembly.Load(AssemblyName.GetAssemblyName(@"Talker.Core.dll"));
+            var assembly = Assembly.Load(AssemblyName.GetAssemblyName(@"Core.dll"));
 
             if (!Directory.Exists(_dbDirectory))
             {

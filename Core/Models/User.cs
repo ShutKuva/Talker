@@ -1,5 +1,8 @@
-﻿namespace Core.Models
+﻿using Core.DbCreator;
+
+namespace Core.Models
 {
+    [DbAutoCreator.AutoDB]
     public class User : BaseEntity
     {
         public string Name { get; set; }

@@ -1,6 +1,8 @@
 ﻿using System;
+using Core.DbCreator;
 namespace Core.Models
 {
+    [DbAutoCreator.AutoDB]
     public class CustomRole : BaseEntity
     {
         public CustomRole(string roleName, RoleRights roleRights)

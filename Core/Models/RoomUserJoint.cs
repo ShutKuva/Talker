@@ -1,5 +1,8 @@
+using Core.DbCreator;
+
 namespace Core.Models
 {
+    [DbAutoCreator.AutoDB]
     public class RoomUserJoint : BaseEntity
     {
         public int _roomId;

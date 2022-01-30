@@ -1,4 +1,4 @@
-﻿namespace BLL.Abstractions.Interfaces
+﻿namespace Core.DbCreator
 {
     public interface IDbAutoCreator
     {

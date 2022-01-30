@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.DbCreator;
 
 namespace Core.Models
 {
+    [DbAutoCreator.AutoDB]
     public class Room : BaseEntity
     {
         public string _name;

@@ -20,13 +20,14 @@ namespace Core.Models
 
         }
 
-        public User(User original)
+        public User(User user)
         {
-            Name = original.Name;
-            Surname = original.Surname;
-            Age = original.Age;
-            Password = original.Password;
-            Username = original.Username;
+            Id = user.Id;
+            Name = user.Name;
+            Surname = user.Surname;
+            Age = user.Age;
+            Password = user.Password;
+            Username = user.Username;
         }
     }
 }

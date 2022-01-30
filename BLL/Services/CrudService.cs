@@ -65,7 +65,7 @@ namespace BLL.Services
         {
             var usersWithSameUsername = await ReadWithCondition(temp => temp.Id == entity.Id);
 
-            if (usersWithSameUsername != null)
+            if (usersWithSameUsername == null)
             {
                 return false;
             }

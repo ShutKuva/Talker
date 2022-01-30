@@ -35,11 +35,10 @@ namespace Core.DbCreator
                 var directoryInfo = new DirectoryInfo(_dbDirectory);
 
                 if (attribute != null && directoryInfo.GetFiles().Where((x) =>
-                x.Name.Contains(type.Name)).FirstOrDefault() == null)
+                x.Name == type.Name + "Db.json").FirstOrDefault() == null)
                 {
                     var path = Path.Combine(_dbDirectory, type.Name + "Db.json");
-                    File.Create(path);
-                    File.WriteAllText("[]", path);
+                    File.WriteAllText(path, "[]");
                 }
             }
         }

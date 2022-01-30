@@ -30,7 +30,7 @@ namespace DAL.Repository
         private void FindDbFile()
         {
             string file = Directory.GetFiles(_appSettings.TempDirectory).Where((x) =>
-            x.Contains(Convert.ToString(typeof(T).Name))).FirstOrDefault();
+            x.Contains(typeof(T).Name + "Db.json")).FirstOrDefault();
 
             if (file == null)
             {

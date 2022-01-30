@@ -8,6 +8,7 @@ using PresentationLayer.Abstractions.Interfaces;
 using PresentationLayer.Services;
 using System.Text;
 using BLL.Services;
+using PresentationLayer.Services.Setters;
 
 namespace PresentationLayer
 {
@@ -16,18 +17,18 @@ namespace PresentationLayer
         private readonly Session _openedSession = new Session();
         private readonly Dictionary<Location, Dictionary<string, IPLService>> _allOperations;
 
-        public App(ICrudService<User> crudService, IHashHandler hashHandler, IPasswordValidator passwordValidator)
+        public App(ICrudService<User> crudService, IHashHandler hashHandler, IPasswordValidator passwordValidator, Setter setter)
         {
             _allOperations = new Dictionary<Location, Dictionary<string, IPLService>>
             {
                 [Location.Unlogged] = new Dictionary<string, IPLService>
                 {
-                    ["reg"] = new RegisterNewUser(crudService, hashHandler, passwordValidator),
+                    ["reg"] = new RegisterNewUser(crudService, setter),
                     ["logIn"] = new Login(hashHandler, crudService, _openedSession)
                 },
                 [Location.Main] = new Dictionary<string, IPLService>
                 {
-                    ["cPar"] = new ChangingAuthorizationParameters(crudService, hashHandler, passwordValidator, _openedSession),
+                    ["cPar"] = new ChangingAuthorizationParameters(setter, _openedSession),
                     ["logOut"] = new Logout(_openedSession)
                 }
             };

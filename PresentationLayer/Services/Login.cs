@@ -34,15 +34,17 @@ namespace PresentationLayer.Services
                 Username = username,
                 Password = password
             };
-            
-            User u = (await _crudService.ReadWithCondition(user => user.Username == loginUser.Username && user.Password == loginUser.Password)).FirstOrDefault();
+
+            var u = await _crudService.ReadWithCondition(
+                user => user.Username == loginUser.Username && user.Password == loginUser.Password
+            );
 
             if (u == null)
             {
                 Console.WriteLine("User doesn't exist! Maybe wrong username or password.");
             } else
             {
-                _openedSession.LoggedUser = u;
+                _openedSession.LoggedUser = u.FirstOrDefault();
                 _openedSession.MyLocation = Location.Main;
                 Console.WriteLine("Logged in!");
             }

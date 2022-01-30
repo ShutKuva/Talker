@@ -1,7 +1,8 @@
 ﻿using BLL.Abstractions.Interfaces;
 using BLL.Abstractions.Interfaces.Validators;
 using Core.Models;
-using PresentationLayer.Abstractions.AbstractClasses;
+using PresentationLayer.Abstractions.Interfaces;
+using PresentationLayer.Services.Setters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +11,18 @@ using System.Threading.Tasks;
 
 namespace PesentationLayer.Services
 {
-    class RegisterNewUser : PLServiceWithPasswordValidations
+    class RegisterNewUser : IPLService
     {
         private readonly ICrudService<User> _crudService;
-        private readonly IPasswordValidator _passwordValidator;
-        private readonly IHashHandler _hashHandler;
+        private readonly Setter _setter;
 
-        public RegisterNewUser(ICrudService<User> crudService, IHashHandler hashHandler, IPasswordValidator passwordValidator)
+        public RegisterNewUser(ICrudService<User> crudService, Setter setter)
         {
             _crudService = crudService;
-            _hashHandler = hashHandler;
-            _passwordValidator = passwordValidator;
+            _setter = setter;
         }
 
-        public override async Task Execute(string[] command)
+        public async Task Execute(string[] command)
         {
             var newUser = new User();
             Console.WriteLine("Write your name:");
@@ -49,7 +48,7 @@ namespace PesentationLayer.Services
             newUser.Age = age;
             Console.WriteLine("Write your username:");
             newUser.Username = Console.ReadLine();
-            GetPassword(newUser, _hashHandler, _passwordValidator);
+            _setter.SetPassword(newUser);
             newUser.Id = new Random().Next(10000, 99999);
 
             bool success;

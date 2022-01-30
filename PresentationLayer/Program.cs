@@ -4,6 +4,7 @@ using Core;
 using Core.DbCreator;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PresentationLayer.Services.Setters;
 
 namespace PresentationLayer
 {
@@ -11,7 +12,7 @@ namespace PresentationLayer
     {
         static void Main(string[] args)
         {
-            IDbAutoCreator dbAutoCreator = new DbAutoCreator(@"C:\Users\mezik\source\repos\Talker\DB");
+            IDbAutoCreator dbAutoCreator = new DbAutoCreator("F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DB");
             dbAutoCreator.GenerateDb();
             var services = new ServiceCollection();
             ConfigureServices(services);
@@ -28,7 +29,8 @@ namespace PresentationLayer
                 .Build();
             services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
             services.Configure<PasswordValidationParameters>(configuration.GetSection("PasswordValidationParameters"));
-            
+
+            services.AddScoped<Setter>();
             services.AddScoped<App>();
             DependencyRegistrar.ConfigureServices(services);
         }

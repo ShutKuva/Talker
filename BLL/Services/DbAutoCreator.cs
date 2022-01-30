@@ -11,18 +11,16 @@ namespace BLL.Services
         [AttributeUsage(AttributeTargets.Class)]
         public class AutoDBAttribute: Attribute { }
 
-        private readonly string _objWarehousePath;
         private readonly string _dbDirectory;
 
-        public DbAutoCreator(string objWarehousePath, string dbDirectory)
+        public DbAutoCreator(string dbDirectory)
         {
-            _objWarehousePath = objWarehousePath;
             _dbDirectory = dbDirectory;
         }
 
         public void GenerateDb()
         {
-            var assembly = Assembly.LoadFrom(_objWarehousePath);
+            var assembly = Assembly.Load(AssemblyName.GetAssemblyName(@"Talker.Core.dll"));
 
             if (!Directory.Exists(_dbDirectory))
             {

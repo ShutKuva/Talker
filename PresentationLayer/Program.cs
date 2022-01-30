@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using BLL;
+using BLL.Abstractions.Interfaces;
+using BLL.Services;
 using Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +12,8 @@ namespace PresentationLayer
     {
         static void Main(string[] args)
         {
+            IDbAutoCreator dbAutoCreator = new DbAutoCreator(@"C:\Users\mezik\source\repos\Talker\DB");
+            dbAutoCreator.GenerateDb();
             var services = new ServiceCollection();
             ConfigureServices(services);
             var serviceProvider = services.BuildServiceProvider();

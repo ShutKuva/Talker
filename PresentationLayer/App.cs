@@ -1,12 +1,7 @@
 ﻿using BLL.Abstractions.Interfaces;
 using Core.Models;
-using Core;
-using BLL.Services;
 using System;
-using System.Threading.Tasks;
 using System.Collections.Generic;
-using BLL.Validators;
-using Microsoft.Extensions.Options;
 using BLL.Abstractions.Interfaces.Validators;
 using PesentationLayer.Services;
 using PresentationLayer.Abstractions.Interfaces;

@@ -29,6 +29,7 @@ namespace PresentationLayer
                 .Build();
             services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
             services.Configure<PasswordValidationParameters>(configuration.GetSection("PasswordValidationParameters"));
+            services.Configure<SQLDBConnection>(configuration.GetSection("SQLDBConnection"));
 
             services.AddScoped<Setter>();
             services.AddScoped<App>();

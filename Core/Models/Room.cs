@@ -18,5 +18,12 @@ namespace Core.Models
             Name = name;
             CreatedAt = createdAt;
         }
+
+        public Room(Room room)
+        {
+            Name = room.Name;
+            Users = room.Users;
+            CreatedAt = room.CreatedAt;
+        }
     }
 }

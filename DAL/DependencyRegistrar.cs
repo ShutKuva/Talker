@@ -1,5 +1,6 @@
 ﻿using DAL.Abstractions.Interfaces;
-using DAL.Repository;
+using DAL.EFContext;
+using DAL.EFRepository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DAL
@@ -10,6 +11,7 @@ namespace DAL
         {
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<ISerializer, JsonSerializer>();
+            services.AddScoped<TalkerDbContext>();
         }
     }
 }

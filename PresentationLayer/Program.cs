@@ -5,6 +5,7 @@ using Core.DbCreator;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.Services.Setters;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace PresentationLayer
 {
@@ -29,7 +30,6 @@ namespace PresentationLayer
                 .Build();
             services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
             services.Configure<PasswordValidationParameters>(configuration.GetSection("PasswordValidationParameters"));
-            services.Configure<SQLDBConnection>(configuration.GetSection("SQLDBConnection"));
 
             services.AddScoped<Setter>();
             services.AddScoped<App>();

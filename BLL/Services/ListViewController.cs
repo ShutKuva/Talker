@@ -80,6 +80,7 @@ namespace BLL.Services
             while (true)
             {
                 var scrollView = items.Skip(scrollSkip).Take(3);
+                Console.Clear();
                 Print(scrollView);
 
             read:
@@ -89,7 +90,6 @@ namespace BLL.Services
                 {
                     if (scrollSkip < items.Count)
                     {
-                        Console.Clear();
                         scrollSkip += 1;
                     }
                     else goto read;
@@ -98,7 +98,6 @@ namespace BLL.Services
                 {
                     if (scrollSkip > 0)
                     {
-                        Console.Clear();
                         scrollSkip -= 1;
                     }
                     else goto read;

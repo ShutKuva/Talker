@@ -42,7 +42,6 @@ namespace DAL.EFRepository
             var tempEntities = await FindByConditionAsync(temp => temp.Id == entity.Id);
             T tempEntity = tempEntities.FirstOrDefault();
             _dbContext.Entry(tempEntity).CurrentValues.SetValues(entity);
-            _dbContext.Entry(tempEntity).State = EntityState.Modified;
             _dbContext.SaveChangesAsync();
             // needs testing
         }

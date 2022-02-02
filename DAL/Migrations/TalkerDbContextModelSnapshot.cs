@@ -37,6 +37,34 @@ namespace DAL.Migrations
                     b.ToTable("Rooms");
                 });
 
+            modelBuilder.Entity("Core.Models.RoomUserJoint", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("RoleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomRoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RoomUserJoint");
+                });
+
             modelBuilder.Entity("Core.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -53,9 +81,6 @@ namespace DAL.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RoomId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
@@ -64,21 +89,32 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoomId");
-
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Core.Models.User", b =>
+            modelBuilder.Entity("Core.Models.RoomUserJoint", b =>
                 {
                     b.HasOne("Core.Models.Room", null)
-                        .WithMany("Users")
-                        .HasForeignKey("RoomId");
+                        .WithMany("RoomUser")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Models.User", null)
+                        .WithMany("RoomUser")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Core.Models.Room", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("RoomUser");
+                });
+
+            modelBuilder.Entity("Core.Models.User", b =>
+                {
+                    b.Navigation("RoomUser");
                 });
 #pragma warning restore 612, 618
         }

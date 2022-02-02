@@ -37,10 +37,10 @@ namespace PresentationLayer.Services
 
             room.CreatedAt = DateTime.Now;
 
-            room.Users = new List<User>()
+            /*room.Users = new List<User>()
             {
                 _openedSession.LoggedUser,
-            };
+            };*/
 
             CustomRole adminRole = new CustomRole("Admin", defaultAdminRoleRigths);
             await _roomRoleJointService.CreateNewRole(room, adminRole);

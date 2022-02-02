@@ -1,23 +1,29 @@
 using Core.DbCreator;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Models
 {
     [DbAutoCreator.AutoDB]
     public class RoomUserJoint : BaseEntity
     {
-        public int _roomId;
-        public int _userId;
-        public string _roleName;
-        public int _roomRoleId;
+        [ForeignKey("RoomId")]
+        public int RoomId { get; set; }
+
+        [ForeignKey("UserId")]
+        public int UserId { get; set; }
+
+        public string RoleName { get; set; }
+
+        public int RoomRoleId { get; set; }
 
         public RoomUserJoint() { }
 
         public RoomUserJoint(int roomId, int userId, string roleName, int roomRoleId)
         {
-            _roomId = roomId;
-            _userId = userId;
-            _roleName = roleName;
-            _roomRoleId = roomRoleId;
+            RoomId = roomId;
+            UserId = userId;
+            RoleName = roleName;
+            RoomRoleId = roomRoleId;
         }
     }
 }

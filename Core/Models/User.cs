@@ -1,4 +1,5 @@
 ﻿using Core.DbCreator;
+using System.Collections.Generic;
 
 namespace Core.Models
 {
@@ -14,6 +15,8 @@ namespace Core.Models
         public string Password { get; set; }
 
         public string Username { get; set; }
+
+        public List<RoomUserJoint> RoomUser { get; set; }
 
         public User()
         {

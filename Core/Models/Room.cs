@@ -8,7 +8,9 @@ namespace Core.Models
     public class Room : BaseEntity
     {
         public string Name { get; set; }
-        public List<User> Users { get; set; }
+
+        public List<RoomUserJoint> RoomUser { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
         public Room() { }
@@ -22,7 +24,6 @@ namespace Core.Models
         public Room(Room room)
         {
             Name = room.Name;
-            Users = room.Users;
             CreatedAt = room.CreatedAt;
         }
     }

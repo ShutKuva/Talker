@@ -3,6 +3,7 @@ using Core.Models;
 using DAL.Abstractions.Interfaces;
 using DAL.EFContext;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,18 @@ namespace DAL.EFRepository
         public async Task CreateAsync(T entity)
         {
             await _dbContext.AddAsync(entity);
-            _dbContext.SaveChanges();
+
+            Task<int> t = default(Task<int>);
+
+            try
+            {
+                t = _dbContext.SaveChangesAsync();
+                await t;
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(t.Exception.Message);
+            }
         }
 
         public async Task DeleteAsync(T entity)

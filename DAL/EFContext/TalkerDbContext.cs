@@ -29,7 +29,7 @@ namespace DAL.EFContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("data source=ZHEKA\\SQLEXPRESS;initial catalog=TestEF;trusted_connection=true");
+            optionsBuilder.UseSqlServer("Server=ZHEKA\\SQLEXPRESS;Database=TestEF;trusted_connection=true");
         }
     }
 }

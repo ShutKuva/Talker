@@ -17,12 +17,12 @@ namespace DAL.EFContext
         public DbSet<User> Users { get; set; }
         public DbSet<Room> Rooms { get; set; }
 
-        /*public TalkerDbContext(DbContextOptions options) : base(options)
+        public TalkerDbContext(DbContextOptions options) : base(options)
         {
 
-        }*/
+        }
 
-        public TalkerDbContext()
+        /*public TalkerDbContext()
         {
 
         }
@@ -30,6 +30,6 @@ namespace DAL.EFContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=ZHEKA\\SQLEXPRESS;Database=TestEF;trusted_connection=true");
-        }
+        }*/
     }
 }

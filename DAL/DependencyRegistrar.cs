@@ -19,12 +19,11 @@ namespace DAL
                 .GetChildren()
                 .Where(section => section.Key == "ConnectionString")
                 .FirstOrDefault().Value;
-            /*services.AddDbContext<TalkerDbContext>(options => options
+            services.AddDbContext<TalkerDbContext>(options => options
                 .UseSqlServer(configurations.GetSection("SQLDBConnection")
                 .GetChildren()
                 .Where(section => section.Key == "ConnectionString")
-                .FirstOrDefault().Value));*/
-            services.AddDbContext<TalkerDbContext>();
+                .FirstOrDefault().Value));
         }
     }
 }

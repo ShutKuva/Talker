@@ -35,7 +35,9 @@ namespace PresentationLayer.Services
                 Password = password
             };
 
-            var u = await _crudService.ReadWithCondition(user => user.Username == loginUser.Username && user.Password == loginUser.Password);
+            var u = await _crudService.ReadWithCondition(
+                user => user.Username == loginUser.Username && user.Password == loginUser.Password
+            );
 
             if (u == null)
             {

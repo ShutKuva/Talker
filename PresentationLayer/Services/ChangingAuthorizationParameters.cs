@@ -1,7 +1,8 @@
 ﻿using BLL.Abstractions.Interfaces;
 using BLL.Abstractions.Interfaces.Validators;
 using Core.Models;
-using PresentationLayer.Abstractions.AbstractClasses;
+using PresentationLayer.Abstractions.Interfaces;
+using PresentationLayer.Services.Setters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,69 +11,39 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Services
 {
-    class ChangingAuthorizationParameters : PLServiceWithPasswordValidations
+    class ChangingAuthorizationParameters : IPLService
     {
-        private readonly ICrudService<User> _crudService;
-        private readonly IHashHandler _hashHandler;
-        private readonly IPasswordValidator _passwordValidator;
+        private const string PASSWORD = "-p",
+            USERNAME = "-u";
         private readonly Session _openedSession;
+        private readonly Setter _setter;
 
-        public ChangingAuthorizationParameters(ICrudService<User> crudService, IHashHandler hashHandler, IPasswordValidator passwordValidator, Session openSession)
+        public ChangingAuthorizationParameters(Setter setter, Session openSession)
         {
-            _crudService = crudService;
-            _hashHandler = hashHandler;
-            _passwordValidator = passwordValidator;
+            _setter = setter;
             _openedSession = openSession;
         }
 
-        public override async Task Execute(string[] command)
+        public async Task Execute(string[] command)
         {
             User tempUser = new User(_openedSession.LoggedUser);
-            ChangeUsername(tempUser);
 
-            GetPassword(tempUser, _hashHandler, _passwordValidator);
-
-            User succes;
-            do
+            if (command.Length == 1)
             {
-                succes = (await _crudService.ReadWithCondition(temp => tempUser.Username == temp.Username)).FirstOrDefault();
-                if (succes is null)
-                {
-                    if (await _crudService.TryUpdate(tempUser))
-                    {
-                        Console.WriteLine("Succesfully updated");
-                    } else
-                    {
-                        Console.WriteLine("Something went wrong");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("User with this name already exist");
-                    ChangeUsername(tempUser);
-                }
-            } while (succes is not null);
-            _openedSession.LoggedUser = tempUser;
-        }
-
-        void ChangeUsername(User user)
-        {
-            string newUsername;
-            bool isNotValidUsername = true;
-            do
+                await _setter.SetUsername(tempUser);
+                _setter.SetPassword(tempUser);
+            } else
             {
-                Console.WriteLine("Write new user name:");
-                newUsername = Console.ReadLine();
-                if (!newUsername.Equals(user.Username))
+                if (command.Contains(USERNAME))
                 {
-                    isNotValidUsername = false;
+                    await _setter.SetUsername(tempUser);
                 }
-                else
+                if (command.Contains(PASSWORD))
                 {
-                    Console.WriteLine("You don't change anything!");
+                    _setter.SetPassword(tempUser);
                 }
-            } while (isNotValidUsername);
-            user.Username = newUsername;
+            }
+            await _setter.UpdateUser(tempUser);
         }
     }
 }

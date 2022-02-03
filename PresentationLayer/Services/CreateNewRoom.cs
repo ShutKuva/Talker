@@ -46,8 +46,6 @@ namespace PresentationLayer.Services
             await _roomRoleJointService.CreateNewRole(room, adminRole);
 
             await _crudRoom.Create(room, x => true);
-
-            //_roomUserJointService.
         }
     }
 }

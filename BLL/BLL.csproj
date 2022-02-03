@@ -13,6 +13,10 @@
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
       <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+      <PackageReference Include="NETCore.MailKit" Version="2.0.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="NETCore.MailKit" />
+    </ItemGroup>
 </Project>

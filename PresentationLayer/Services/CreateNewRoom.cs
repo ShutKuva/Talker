@@ -47,7 +47,7 @@ namespace PresentationLayer.Services
 
             await _crudRoom.Create(room, x => true);
 
-            _roomUserJointService.
+            //_roomUserJointService.
         }
     }
 }

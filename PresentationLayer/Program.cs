@@ -5,6 +5,7 @@ using Core.DbCreator;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PresentationLayer.Services.Setters;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace PresentationLayer
 {
@@ -32,7 +33,7 @@ namespace PresentationLayer
 
             services.AddScoped<Setter>();
             services.AddScoped<App>();
-            DependencyRegistrar.ConfigureServices(services);
+            DependencyRegistrar.ConfigureServices(services, configuration);
         }
     }
 }

@@ -49,7 +49,6 @@ namespace PesentationLayer.Services
             Console.WriteLine("Write your username:");
             newUser.Username = Console.ReadLine();
             _setter.SetPassword(newUser);
-            newUser.Id = new Random().Next(10000, 99999);
 
             bool success;
 

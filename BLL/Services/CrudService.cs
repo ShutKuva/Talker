@@ -20,7 +20,8 @@ namespace BLL.Services
 
         public async Task<bool> Create(T entity, Expression<Func<T, bool>> predicate)
         {
-            var u = (await ReadWithCondition(predicate)).FirstOrDefault();
+            var users = await ReadWithCondition(predicate);
+            var u = users.FirstOrDefault();
 
             if (u != null)
             {

@@ -33,7 +33,7 @@ namespace PresentationLayer
 
             services.AddScoped<Setter>();
             services.AddScoped<App>();
-            DependencyRegistrar.ConfigureServices(services);
+            DependencyRegistrar.ConfigureServices(services, configuration);
         }
     }
 }

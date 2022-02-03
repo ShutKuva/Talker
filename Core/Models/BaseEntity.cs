@@ -6,5 +6,7 @@ namespace Core.Models
     {
         [Key]
         public int Id { get; set; }
+
+        //public abstract void ChangeProperties(BaseEntity entity);
     }
 }

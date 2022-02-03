@@ -1,7 +1,9 @@
-﻿using Core.Models;
+﻿using Core;
+using Core.Models;
 using DAL.Abstractions.Interfaces;
 using DAL.EFContext;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +25,7 @@ namespace DAL.EFRepository
         public async Task CreateAsync(T entity)
         {
             await _dbContext.AddAsync(entity);
-            await _dbContext.SaveChangesAsync();
+            _dbContext.SaveChanges();
         }
 
         public async Task DeleteAsync(T entity)
@@ -40,8 +42,9 @@ namespace DAL.EFRepository
         public async Task UpdateAsync(T entity)
         {
             var tempEntities = await FindByConditionAsync(temp => temp.Id == entity.Id);
-            T tempEntity = tempEntities.FirstOrDefault();
-            // Shoto ne to
+            T entityInDb = tempEntities.FirstOrDefault();
+            _dbContext.Update(entityInDb).CurrentValues.SetValues(entity);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

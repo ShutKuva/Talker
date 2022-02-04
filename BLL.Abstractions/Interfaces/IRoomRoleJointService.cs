@@ -8,11 +8,13 @@ namespace BLL.Abstractions.Interfaces
 {
     public interface IRoomRoleJointService
     {
-        Task<bool> CreateNewRole(Room room, CustomRole customRole);
+        Task<bool> CreateNewRole(CustomRole customRole);
 
-        Task<bool> ModifyRole(Room room, int customRoleId, string newRoleName = null, CustomRole.RoleRights? newRoleRights = null);
+        Task<bool> ModifyRole(int customRoleId, string newRoleName = null, CustomRole.RoleRights? newRoleRights = null);
 
-        Task<bool> DeleteRole(Room room, int customRoleId);
+        Task<bool> DeleteRole(int customRoleId);
+
+        Task<RoomRoleJoint> GetRoomRoleJoint(int roomRoleId);
 
         Task<IEnumerable<RoomRoleJoint>> ReadWithCondition(Expression<Func<RoomRoleJoint, bool>> expression);
     }

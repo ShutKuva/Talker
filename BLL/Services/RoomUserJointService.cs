@@ -54,18 +54,38 @@ namespace BLL.Services
 
         public async Task<bool> AssignRoleToUser(int roomUserId, int roomRoleId)
         {
-            var roomUserJoint = await this.ReadWithCondition(x => x.Id == roomUserId);
-            var roomUser = roomUserJoint.FirstOrDefault();
+            var roomUserJoint = await this.GetRoomUserJoint(roomUserId);
 
-            if (roomUser == null)
+            if (roomUserJoint == null)
             {
                 return false;
             }
 
-            roomUser.RoomRoleId = roomRoleId;
+            roomUserJoint.RoomRoleId = roomRoleId;
 
-            await _roomUserJointRepository.UpdateAsync(roomUser);
+            await _roomUserJointRepository.UpdateAsync(roomUserJoint);
             return true;
+        }
+
+        public async Task<bool> DeleteUserFromRoom(int roomUserId)
+        {
+            var roomUserJoint = await this.GetRoomUserJoint(roomUserId);
+
+            if (roomUserJoint == null)
+            {
+                return false;
+            }
+
+            await _roomUserJointRepository.DeleteAsync(roomUserJoint);
+            return true;
+        }
+
+        public async Task<RoomUserJoint> GetRoomUserJoint(int roomUserId)
+        {
+            var roomUserJoint = await this.ReadWithCondition(x => x.Id == roomUserId);
+            var roomUser = roomUserJoint.FirstOrDefault();
+
+            return roomUser;
         }
 
         public async Task<IEnumerable<RoomUserJoint>> ReadWithCondition(Expression<Func<RoomUserJoint, bool>> expression) // добавлен доп метод для удобства

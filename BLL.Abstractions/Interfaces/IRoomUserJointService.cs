@@ -12,6 +12,8 @@ namespace BLL.Abstractions.Interfaces
 
         Task<bool> AssignRoleToUser(int roomUserId, int roomRoleId);
 
+        Task<RoomUserJoint> GetRoomUserJoint(int roomUserId);
+
         Task<IEnumerable<RoomUserJoint>> ReadWithCondition(Expression<Func<RoomUserJoint, bool>> expression);
     }
 }

@@ -13,7 +13,7 @@ namespace PresentationLayer
     {
         static void Main(string[] args)
         {
-            IDbAutoCreator dbAutoCreator = new DbAutoCreator("F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DB");
+            IDbAutoCreator dbAutoCreator = new DbAutoCreator("C:\\Users\\mezik\\source\\repos\\Talker\\DB");
             dbAutoCreator.GenerateDb();
             var services = new ServiceCollection();
             ConfigureServices(services);

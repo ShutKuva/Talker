@@ -1,7 +1,10 @@
 ﻿using BLL.Abstractions.Interfaces;
 using Core.Models;
 using DAL.Abstractions.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace BLL.Services
@@ -30,7 +33,9 @@ namespace BLL.Services
 
         public async Task<bool> ModifyRole(Room room, int customRoleId, string newRoleName = null, CustomRole.RoleRights? newRoleRights = null)
         {
-            RoomRoleJoint customRole = await this.GetRole(room, customRoleId);
+            var customRoles = await this.ReadWithCondition(x => x.Id == customRoleId);
+
+            var customRole = customRoles.FirstOrDefault();
 
             if (customRole != null)
             {
@@ -66,13 +71,16 @@ namespace BLL.Services
             return false;
         }
 
-        public async Task<RoomRoleJoint> GetRole(Room room, int customRoleId)
+        public async Task<IEnumerable<RoomRoleJoint>> ReadWithCondition(Expression<Func<RoomRoleJoint, bool>> expression) // добавлен доп метод для удобства
         {
-            RoomRoleJoint customRole = (await _roomRoleJointRepository
-                .FindByConditionAsync(x => x._roomId == room.Id && x._roleId == customRoleId))
-                .FirstOrDefault();
+            var data = await _roomRoleJointRepository.FindByConditionAsync(expression);
 
-            return customRole;
+            if (data.Any())
+            {
+                return data.ToList();
+            }
+
+            return null;
         }
     }
 }

@@ -5,18 +5,15 @@ namespace Core.Models
     [DbAutoCreator.AutoDB]
     public class RoomRoleJoint : BaseEntity
     {
-        public int _roomId;
-        public int _roleId;
-        public string _roleName;
-        public int _roleRights;
+        public string RoleName { get; set; }
+        public int RoleRights { get; set; }
 
         public RoomRoleJoint() { }
 
-        public RoomRoleJoint(int roomId, string roleName, int roleRights)
+        public RoomRoleJoint(string roleName, int roleRights)
         {
-            _roomId = roomId;
-            _roleName = roleName;
-            _roleRights = roleRights;
+            RoleName = roleName;
+            RoleRights = roleRights;
         }
     }
 }

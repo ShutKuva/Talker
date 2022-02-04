@@ -13,17 +13,71 @@ namespace BLL.Services
     public class RoomUserJointService : IRoomUserJointService
     {
         private readonly IGenericRepository<RoomUserJoint> _roomUserJointRepository;
+        private readonly IRoomRoleJointService _roomRoleJointService;
+        private readonly ICrudService<Room> _roomCrud;
+        private readonly ICrudService<User> _userCrud;
 
-        public RoomUserJointService(IGenericRepository<RoomUserJoint> roomUserJointRepository)
+        public RoomUserJointService(
+            IGenericRepository<RoomUserJoint> roomUserJointRepository,
+            IRoomRoleJointService roomRoleJointService,
+            ICrudService<Room> roomCrud,
+            ICrudService<User> userCrud)
         {
             _roomUserJointRepository = roomUserJointRepository;
+            _roomRoleJointService = roomRoleJointService;
+            _roomCrud = roomCrud;
+            _userCrud = userCrud;
+        }
+
+        public async Task<bool> CreateNewUserInRoom(int roomId, int userId, int roleId)
+        {
+            var rooms = _roomCrud.ReadWithCondition(x => x.Id == roomId);
+            var users = _userCrud.ReadWithCondition(x => x.Id == userId);
+            var roles = _roomRoleJointService.ReadWithCondition(x => x.Id == roleId);
+
+            await Task.WhenAll(rooms, users, roles);
+
+            var room = rooms.Result.FirstOrDefault();
+            var user = users.Result.FirstOrDefault();
+            var role = roles.Result.FirstOrDefault();
+
+            if (room == null || user == null || role == null)
+            {
+                return false;
+            }
+
+            RoomUserJoint roomUserJoint = new RoomUserJoint(roomId, userId, roleId);
+
+            await _roomUserJointRepository.CreateAsync(roomUserJoint);
+            return true;
+        }
+
+        public async Task<bool> AssignRoleToUser(int roomUserId, int roomRoleId)
+        {
+            var roomUserJoint = await this.ReadWithCondition(x => x.Id == roomUserId);
+            var roomUser = roomUserJoint.FirstOrDefault();
+
+            if (roomUser == null)
+            {
+                return false;
+            }
+
+            roomUser.RoomRoleId = roomRoleId;
+
+            await _roomUserJointRepository.UpdateAsync(roomUser);
+            return true;
         }
 
         public async Task<IEnumerable<RoomUserJoint>> ReadWithCondition(Expression<Func<RoomUserJoint, bool>> expression) // добавлен доп метод для удобства
         {
-            IEnumerable<RoomUserJoint> data = (await _roomUserJointRepository.FindByConditionAsync(expression)).ToList();
+            var data = await _roomUserJointRepository.FindByConditionAsync(expression);
 
-            return data;
+            if (data.Any())
+            {
+                return data.ToList();
+            }
+
+            return null;
         }
     }
 }

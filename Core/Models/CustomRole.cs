@@ -8,7 +8,7 @@ namespace Core.Models
         public CustomRole(string roleName, RoleRights roleRights)
         {
             SetRoleName(roleName);
-            CurrentRoleRights = roleRights;
+            SetRoleRights(roleRights);
         }
 
         [Flags]
@@ -36,7 +36,12 @@ namespace Core.Models
 
         public void SetRoleRights(RoleRights roleRights)
         {
-            CurrentRoleRights = roleRights;
+            if (roleRights > 0 && roleRights < (RoleRights) 32)
+            {
+                CurrentRoleRights = roleRights;
+            }
+
+            CurrentRoleRights = 0;
         }
     }
 }

@@ -1,4 +1,7 @@
 ﻿using Core.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace BLL.Abstractions.Interfaces
@@ -11,6 +14,6 @@ namespace BLL.Abstractions.Interfaces
 
         Task<bool> DeleteRole(Room room, int customRoleId);
 
-        Task<RoomRoleJoint> GetRole(Room room, int customRoleId);
+        Task<IEnumerable<RoomRoleJoint>> ReadWithCondition(Expression<Func<RoomRoleJoint, bool>> expression);
     }
 }

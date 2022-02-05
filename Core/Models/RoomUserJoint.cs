@@ -12,15 +12,16 @@ namespace Core.Models
         [ForeignKey("UserId")]
         public int UserId { get; set; }
 
-        public int RoomRoleId { get; set; }
+        [ForeignKey("CustomRoleId")]
+        public int CustomRoleId { get; set; }
 
         public RoomUserJoint() { }
 
-        public RoomUserJoint(int roomId, int userId, int roomRoleId)
+        public RoomUserJoint(int roomId, int userId, int customRoleId)
         {
             RoomId = roomId;
             UserId = userId;
-            RoomRoleId = roomRoleId;
+            CustomRoleId = customRoleId;
         }
     }
 }

@@ -4,14 +4,16 @@ using DAL.EFContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(TalkerDbContext))]
-    partial class TalkerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220205102335_AddedCustomRoleTable")]
+    partial class AddedCustomRoleTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,18 +64,16 @@ namespace DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CustomRoleId")
+                    b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoomId")
+                    b.Property<int>("RoomRoleId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomRoleId");
 
                     b.HasIndex("RoomId");
 
@@ -111,12 +111,6 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Core.Models.RoomUserJoint", b =>
                 {
-                    b.HasOne("Core.Models.CustomRole", null)
-                        .WithMany("RoomUserJoint")
-                        .HasForeignKey("CustomRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Core.Models.Room", null)
                         .WithMany("RoomUser")
                         .HasForeignKey("RoomId")
@@ -128,11 +122,6 @@ namespace DAL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Core.Models.CustomRole", b =>
-                {
-                    b.Navigation("RoomUserJoint");
                 });
 
             modelBuilder.Entity("Core.Models.Room", b =>

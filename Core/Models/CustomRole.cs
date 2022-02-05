@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using Core.DbCreator;
 namespace Core.Models
 {
     [DbAutoCreator.AutoDB]
     public class CustomRole : BaseEntity
     {
-        public CustomRole(string roleName, RoleRights roleRights)
+        public CustomRole()
+        {
+
+        }
+
+        public CustomRole(string roleName, int roleRights)
         {
             SetRoleName(roleName);
             SetRoleRights(roleRights);
@@ -24,7 +30,9 @@ namespace Core.Models
 
         public string RoleName { get; private set; }
 
-        public RoleRights CurrentRoleRights { get; private set; }
+        public int CurrentRoleRights { get; private set; }
+
+        public List<RoomUserJoint> RoomUserJoint { get; set; }
 
         public void SetRoleName(string newRoleName)
         {
@@ -34,9 +42,9 @@ namespace Core.Models
             }
         }
 
-        public void SetRoleRights(RoleRights roleRights)
+        public void SetRoleRights(int roleRights)
         {
-            if (roleRights > 0 && roleRights < (RoleRights) 32)
+            if (roleRights > 0 && roleRights < 32)
             {
                 CurrentRoleRights = roleRights;
             }

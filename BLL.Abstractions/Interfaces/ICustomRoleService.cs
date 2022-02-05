@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Abstractions.Interfaces
 {
-    public interface IRoomRoleJointService
+    public interface ICustomRoleService
     {
         Task<bool> CreateNewRole(CustomRole customRole);
 
@@ -14,8 +14,8 @@ namespace BLL.Abstractions.Interfaces
 
         Task<bool> DeleteRole(int customRoleId);
 
-        Task<RoomRoleJoint> GetRoomRoleJoint(int roomRoleId);
+        Task<CustomRole> GetRoomRoleJoint(int roomRoleId);
 
-        Task<IEnumerable<RoomRoleJoint>> ReadWithCondition(Expression<Func<RoomRoleJoint, bool>> expression);
+        Task<IEnumerable<CustomRole>> ReadWithCondition(Expression<Func<CustomRole, bool>> expression);
     }
 }

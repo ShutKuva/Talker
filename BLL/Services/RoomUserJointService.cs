@@ -13,18 +13,18 @@ namespace BLL.Services
     public class RoomUserJointService : IRoomUserJointService
     {
         private readonly IGenericRepository<RoomUserJoint> _roomUserJointRepository;
-        private readonly IRoomRoleJointService _roomRoleJointService;
+        private readonly ICustomRoleService _customRoleService;
         private readonly ICrudService<Room> _roomCrud;
         private readonly ICrudService<User> _userCrud;
 
         public RoomUserJointService(
             IGenericRepository<RoomUserJoint> roomUserJointRepository,
-            IRoomRoleJointService roomRoleJointService,
+            ICustomRoleService customRoleService,
             ICrudService<Room> roomCrud,
             ICrudService<User> userCrud)
         {
             _roomUserJointRepository = roomUserJointRepository;
-            _roomRoleJointService = roomRoleJointService;
+            _customRoleService = customRoleService;
             _roomCrud = roomCrud;
             _userCrud = userCrud;
         }
@@ -33,7 +33,7 @@ namespace BLL.Services
         {
             var rooms = _roomCrud.ReadWithCondition(x => x.Id == roomId);
             var users = _userCrud.ReadWithCondition(x => x.Id == userId);
-            var roles = _roomRoleJointService.ReadWithCondition(x => x.Id == roleId);
+            var roles = _customRoleService.ReadWithCondition(x => x.Id == roleId);
 
             await Task.WhenAll(rooms, users, roles);
 
@@ -52,7 +52,7 @@ namespace BLL.Services
             return true;
         }
 
-        public async Task<bool> AssignRoleToUser(int roomUserId, int roomRoleId)
+        public async Task<bool> AssignRoleToUser(int roomUserId, int customRoleId)
         {
             var roomUserJoint = await this.GetRoomUserJoint(roomUserId);
 
@@ -61,7 +61,7 @@ namespace BLL.Services
                 return false;
             }
 
-            roomUserJoint.RoomRoleId = roomRoleId;
+            roomUserJoint.CustomRoleId = customRoleId;
 
             await _roomUserJointRepository.UpdateAsync(roomUserJoint);
             return true;

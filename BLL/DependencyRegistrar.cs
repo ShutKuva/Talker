@@ -15,7 +15,7 @@ namespace BLL
             services.AddScoped(typeof(ICrudService<>), typeof(CrudService<>));
             services.AddTransient<Room>();
             services.AddScoped<IRoomUserJointService, RoomUserJointService>();
-            services.AddScoped<IRoomRoleJointService, RoomRoleJointService>();
+            services.AddScoped<ICustomRoleService, CustomRoleService>();
             services.AddScoped<IPasswordValidator, PasswordValidator>();
             services.AddScoped<IHashHandler, HashHandler>();
             DAL.DependencyRegistrar.ConfigureServices(services, configurations);

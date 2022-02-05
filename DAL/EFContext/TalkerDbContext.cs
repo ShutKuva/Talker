@@ -15,21 +15,24 @@ namespace DAL.EFContext
     class TalkerDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+
         public DbSet<Room> Rooms { get; set; }
 
-        public TalkerDbContext(DbContextOptions options) : base(options)
-        {
+        public DbSet<CustomRole> CustomRoles { get; set; }
 
-        }
+        //public TalkerDbContext(DbContextOptions options) : base(options)
+        //{
 
-        /*public TalkerDbContext()
+        //}
+
+        public TalkerDbContext()
         {
 
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=ZHEKA\\SQLEXPRESS;Database=TestEF;trusted_connection=true");
-        }*/
+            optionsBuilder.UseSqlServer("Server=DESKTOP-VOR6N2H\\TALKERSQLSERVER;Database=TalkerDb;Trusted_connection=true");
+        }
     }
 }

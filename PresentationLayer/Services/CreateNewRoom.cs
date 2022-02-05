@@ -15,20 +15,20 @@ namespace PresentationLayer.Services
         private readonly ICrudService<Room> _crudRoom;
         private readonly ICrudService<User> _crudUser;
         private readonly IRoomUserJointService _roomUserJointService;
-        private readonly IRoomRoleJointService _roomRoleJointService; 
+        private readonly ICustomRoleService _customRoleService; 
         private readonly Session _openedSession;
 
         public CreateNewRoom(
             ICrudService<Room> crudRoom,
             ICrudService<User> crudUser,
             IRoomUserJointService roomUserJointService,
-            IRoomRoleJointService roomRoleJointService,
+            ICustomRoleService customRoleService,
             Session openedSession)
         {
             _crudRoom = crudRoom;
             _crudUser = crudUser;
             _roomUserJointService = roomUserJointService;
-            _roomRoleJointService = roomRoleJointService;
+            _customRoleService = customRoleService;
             _openedSession = openedSession;
         }
 
@@ -46,10 +46,14 @@ namespace PresentationLayer.Services
 
             var user = _openedSession.LoggedUser;
 
-            CustomRole adminRole = new CustomRole("Admin", defaultAdminRoleRigths);
-            await _roomRoleJointService.CreateNewRole(adminRole);
+            CustomRole adminRole = new CustomRole("Admin", (int) defaultAdminRoleRigths);
+            await _customRoleService.CreateNewRole(adminRole);
 
-            var roomUserJoint = _roomUserJointService.CreateNewUserInRoom(room.Id, user.Id, adminRole.Id);
+            await _roomUserJointService.CreateNewUserInRoom(room.Id, user.Id, adminRole.Id);
+
+            var roomUserJoints = await _roomUserJointService.ReadWithCondition(x => x.UserId == user.Id && x.RoomId == room.Id);
+            var roomUserJoint = roomUserJoints.FirstOrDefault();
+
             room.RoomUser = new List<RoomUserJoint>()
             {
                 await _roomUserJointService.GetRoomUserJoint(roomUserJoint.Id),

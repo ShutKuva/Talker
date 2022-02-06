@@ -12,12 +12,10 @@ namespace BLL.Services
     public class CustomRoleService : ICustomRoleService
     {
         private readonly IGenericRepository<CustomRole> _customRoleRepository;
-        private readonly IRoomUserJointService _roomUserJointService;
 
-        public CustomRoleService(IGenericRepository<CustomRole> customRoleRepository, IRoomUserJointService roomUserJointService)
+        public CustomRoleService(IGenericRepository<CustomRole> customRoleRepository)
         {
             _customRoleRepository = customRoleRepository;
-            _roomUserJointService = roomUserJointService;
         }
 
         public async Task<bool> CreateNewRole(CustomRole customRole)

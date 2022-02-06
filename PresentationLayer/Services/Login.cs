@@ -39,7 +39,7 @@ namespace PresentationLayer.Services
                 user => user.Username == loginUser.Username && user.Password == loginUser.Password
             );
 
-            if (u.FirstOrDefault() is null)
+            if (u is null)
             {
                 Console.WriteLine("User doesn't exist! Maybe wrong username or password.");
             } else

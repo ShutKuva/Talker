@@ -48,8 +48,10 @@ namespace Core.Models
             {
                 CurrentRoleRights = roleRights;
             }
-
-            CurrentRoleRights = 0;
+            else
+            {
+                CurrentRoleRights = 0;
+            }
         }
     }
 }

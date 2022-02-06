@@ -18,16 +18,19 @@ namespace BLL.Services
             _entityRepository = entityRepository;
         }
 
-        public async Task<bool> Create(T entity, Expression<Func<T, bool>> predicate)
+        public async Task<bool> Create(T entity, Expression<Func<T, bool>> predicate = null)
         {
-            var users = await ReadWithCondition(predicate);
-            var u = users.FirstOrDefault();
-
-            if (u != null)
+            if (predicate != null)
             {
-                return false;
-            }
+                var entities = await ReadWithCondition(predicate);
+                var e = entities.FirstOrDefault();
 
+                if (e != null)
+                {
+                    return false;
+                }
+            }
+            
             await _entityRepository.CreateAsync(entity);
 
             return true;
@@ -35,13 +38,15 @@ namespace BLL.Services
 
         public async Task<bool> Delete(int id)
         {
-            var u = (await ReadWithCondition(temp => temp.Id == id)).FirstOrDefault();
+            var entities = await ReadWithCondition(temp => temp.Id == id);
+            var e = entities.FirstOrDefault();
 
-            if (u == null)
+            if (e == null)
             {
                 return false;
             }
-            await _entityRepository.DeleteAsync(u);
+
+            await _entityRepository.DeleteAsync(e);
 
             return true;
         }

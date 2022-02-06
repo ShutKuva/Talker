@@ -37,9 +37,9 @@ namespace BLL.Services
 
             await Task.WhenAll(rooms, users, roles);
 
-            var room = rooms.Result.FirstOrDefault();
-            var user = users.Result.FirstOrDefault();
-            var role = roles.Result.FirstOrDefault();
+            var room = rooms.Result?.FirstOrDefault();
+            var user = users.Result?.FirstOrDefault();
+            var role = roles.Result?.FirstOrDefault();
 
             if (room == null || user == null || role == null)
             {

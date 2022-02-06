@@ -7,7 +7,6 @@ using PesentationLayer.Services;
 using PresentationLayer.Abstractions.Interfaces;
 using PresentationLayer.Services;
 using System.Text;
-using BLL.Services;
 using PresentationLayer.Services.Setters;
 
 namespace PresentationLayer
@@ -17,19 +16,26 @@ namespace PresentationLayer
         private readonly Session _openedSession = new Session();
         private readonly Dictionary<Location, Dictionary<string, IPLService>> _allOperations;
 
-        public App(ICrudService<User> crudService, IHashHandler hashHandler, IPasswordValidator passwordValidator, Setter setter)
+        public App(ICrudService<User> crudUser,
+                   ICrudService<Room> crudRoom,
+                   IRoomUserJointService roomUserJointService,
+                   ICustomRoleService roleService,
+                   IHashHandler hashHandler,
+                   IPasswordValidator passwordValidator,
+                   Setter setter)
         {
             _allOperations = new Dictionary<Location, Dictionary<string, IPLService>>
             {
                 [Location.Unlogged] = new Dictionary<string, IPLService>
                 {
-                    ["reg"] = new RegisterNewUser(crudService, setter),
-                    ["logIn"] = new Login(hashHandler, crudService, _openedSession)
+                    ["reg"] = new RegisterNewUser(crudUser, setter),
+                    ["logIn"] = new Login(hashHandler, crudUser, _openedSession)
                 },
                 [Location.Main] = new Dictionary<string, IPLService>
                 {
                     ["cPar"] = new ChangingAuthorizationParameters(setter, _openedSession),
-                    ["logOut"] = new Logout(_openedSession)
+                    ["logOut"] = new Logout(_openedSession),
+                    ["crRoom"] = new CreateNewRoom(crudRoom, crudUser, roomUserJointService, roleService, _openedSession)
                 }
             };
         }

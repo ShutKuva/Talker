@@ -8,7 +8,7 @@ namespace BLL.Abstractions.Interfaces
 {
     public interface ICrudService<T> where T : BaseEntity
     {
-        Task<bool> Create(T entity, Expression<Func<T, bool>> predicate);
+        Task<bool> Create(T entity, Expression<Func<T, bool>> predicate = null);
 
         Task<bool> Delete(int id);
 

@@ -46,8 +46,12 @@ namespace PresentationLayer.Services
 
             var user = _openedSession.LoggedUser;
 
-            CustomRole adminRole = new CustomRole("Admin", (int) defaultAdminRoleRigths);
-            await _customRoleService.CreateNewRole(adminRole);
+            var adminRole = new CustomRole("Admin", (int) defaultAdminRoleRigths);
+
+            var roleCreate = _customRoleService.CreateNewRole(adminRole);
+            var roomCreate = _crudRoom.Create(room);
+
+            await Task.WhenAll(roleCreate, roomCreate);
 
             await _roomUserJointService.CreateNewUserInRoom(room.Id, user.Id, adminRole.Id);
 
@@ -58,8 +62,6 @@ namespace PresentationLayer.Services
             {
                 await _roomUserJointService.GetRoomUserJoint(roomUserJoint.Id),
             };
-
-            await _crudRoom.Create(room, x => true);
         }
     }
 }

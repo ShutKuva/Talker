@@ -15,10 +15,6 @@ namespace DAL
         {
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<ISerializer, JsonSerializer>();
-            string temp = configurations.GetSection("SQLDBConnection")
-                .GetChildren()
-                .Where(section => section.Key == "ConnectionString")
-                .FirstOrDefault().Value;
             services.AddDbContext<TalkerDbContext>(options => options
                 .UseSqlServer(configurations.GetSection("SQLDBConnection")
                 .GetChildren()

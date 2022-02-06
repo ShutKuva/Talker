@@ -23,7 +23,7 @@ namespace BLL.Services
             if (predicate != null)
             {
                 var entities = await ReadWithCondition(predicate);
-                var e = entities.FirstOrDefault();
+                var e = entities?.FirstOrDefault();
 
                 if (e != null)
                 {

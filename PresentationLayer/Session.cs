@@ -20,6 +20,8 @@ namespace PresentationLayer
 
         public User LoggedUser { get; set; }
 
+        public int RoomId { get; set; }
+
         public Session()
         {
             MyLocation = Location.Unlogged;

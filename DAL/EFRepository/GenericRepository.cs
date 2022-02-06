@@ -26,7 +26,16 @@ namespace DAL.EFRepository
         public async Task CreateAsync(T entity)
         {
             await _dbContext.AddAsync(entity);
-            await _dbContext.SaveChangesAsync();
+            Console.WriteLine(_dbContext.Entry(entity).State);
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public async Task DeleteAsync(T entity)

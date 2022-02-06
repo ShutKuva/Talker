@@ -14,21 +14,21 @@ namespace PresentationLayer.Services
         private readonly CustomRole.RoleRights defaultAdminRoleRigths = (CustomRole.RoleRights) 31;
         private readonly ICrudService<Room> _crudRoom;
         private readonly ICrudService<User> _crudUser;
+        private readonly ICrudService<CustomRole> _crudRole;
         private readonly IRoomUserJointService _roomUserJointService;
-        private readonly ICustomRoleService _customRoleService; 
         private readonly Session _openedSession;
 
         public CreateNewRoom(
             ICrudService<Room> crudRoom,
             ICrudService<User> crudUser,
+            ICrudService<CustomRole> crudRole,
             IRoomUserJointService roomUserJointService,
-            ICustomRoleService customRoleService,
             Session openedSession)
         {
             _crudRoom = crudRoom;
             _crudUser = crudUser;
+            _crudRole = crudRole;
             _roomUserJointService = roomUserJointService;
-            _customRoleService = customRoleService;
             _openedSession = openedSession;
         }
 
@@ -48,10 +48,8 @@ namespace PresentationLayer.Services
 
             var adminRole = new CustomRole("Admin", (int) defaultAdminRoleRigths);
 
-            var roleCreate = _customRoleService.CreateNewRole(adminRole);
-            var roomCreate = _crudRoom.Create(room);
-
-            await Task.WhenAll(roleCreate, roomCreate);
+            var roleCreate = await _crudRole.Create(adminRole);
+            var roomCreate = await _crudRoom.Create(room);
 
             await _roomUserJointService.CreateNewUserInRoom(room.Id, user.Id, adminRole.Id);
 
@@ -62,6 +60,9 @@ namespace PresentationLayer.Services
             {
                 await _roomUserJointService.GetRoomUserJoint(roomUserJoint.Id),
             };
+
+            _openedSession.MyLocation = Location.InRoom;
+            _openedSession.RoomId = room.Id;
         }
     }
 }

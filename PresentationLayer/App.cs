@@ -18,8 +18,8 @@ namespace PresentationLayer
 
         public App(ICrudService<User> crudUser,
                    ICrudService<Room> crudRoom,
+                   ICrudService<CustomRole> crudRole,
                    IRoomUserJointService roomUserJointService,
-                   ICustomRoleService roleService,
                    IHashHandler hashHandler,
                    IPasswordValidator passwordValidator,
                    Setter setter)
@@ -35,7 +35,7 @@ namespace PresentationLayer
                 {
                     ["cPar"] = new ChangingAuthorizationParameters(setter, _openedSession),
                     ["logOut"] = new Logout(_openedSession),
-                    ["crRoom"] = new CreateNewRoom(crudRoom, crudUser, roomUserJointService, roleService, _openedSession)
+                    ["crRoom"] = new CreateNewRoom(crudRoom, crudUser, crudRole, roomUserJointService, _openedSession)
                 }
             };
         }

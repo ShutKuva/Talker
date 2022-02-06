@@ -34,7 +34,7 @@ namespace DAL.EFContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("data source=DESKTOP-VOR6N2H\\TALKERSQLSERVER;initial catalog=TalkerDb;trusted_connection=true");
+            optionsBuilder.UseSqlServer("data source=ZHEKA\\SQLEXPRESS;initial catalog=TestEF;trusted_connection=true");
         }
     }
 }

@@ -25,6 +25,6 @@ namespace Core.Models
         [ForeignKey("CustomRoleId")]
         public int CustomRoleId { get; set; }
 
-        public List<Message> Message { get; set; }
+        public Room Room { get; set; }
     }
 }

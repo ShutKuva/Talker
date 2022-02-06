@@ -42,21 +42,31 @@ namespace PresentationLayer.Services
             Console.WriteLine("Enter a room name: ");
             room.Name = Console.ReadLine();
 
+            bool success;
+            do
+            {
+                success = await _crudRoom.Create(room, x => x.Name == room.Name);
+                if (!success)
+                {
+                    Console.WriteLine("This name is already exists, try another:");
+                    room.Name = Console.ReadLine();
+                }
+            } while (!success);
+
             room.CreatedAt = DateTime.Now;
 
             var user = _openedSession.LoggedUser;
 
             var adminRole = new CustomRole("Admin", (int) defaultAdminRoleRigths);
 
-            var roleCreate = await _crudRole.Create(adminRole);
-            var roomCreate = await _crudRoom.Create(room);
+            await _crudRole.Create(adminRole);
 
             await _roomUserJointService.CreateNewUserInRoom(room.Id, user.Id, adminRole.Id);
 
             var roomUserJoints = await _roomUserJointService.ReadWithCondition(x => x.UserId == user.Id && x.RoomId == room.Id);
             var roomUserJoint = roomUserJoints.FirstOrDefault();
 
-            room.RoomUser = new List<RoomUserJoint>()
+            room.RoomUsers = new List<RoomUserJoint>()
             {
                 await _roomUserJointService.GetRoomUserJoint(roomUserJoint.Id),
             };

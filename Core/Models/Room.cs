@@ -9,7 +9,9 @@ namespace Core.Models
     {
         public string Name { get; set; }
 
-        public List<RoomUserJoint> RoomUser { get; set; }
+        public List<RoomUserJoint> RoomUsers { get; set; }
+
+        public List<Chat> Chats { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

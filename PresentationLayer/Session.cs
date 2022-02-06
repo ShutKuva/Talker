@@ -12,6 +12,7 @@ namespace PresentationLayer
         Unlogged,
         Main,
         InRoom,
+        InChat,
     }
 
     public class Session
@@ -21,6 +22,8 @@ namespace PresentationLayer
         public User LoggedUser { get; set; }
 
         public int RoomId { get; set; }
+
+        public int ChatId { get; set; }
 
         public Session()
         {

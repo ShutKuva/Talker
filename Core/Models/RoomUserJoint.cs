@@ -1,4 +1,5 @@
 using Core.DbCreator;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Models
@@ -6,6 +7,15 @@ namespace Core.Models
     [DbAutoCreator.AutoDB]
     public class RoomUserJoint : BaseEntity
     {
+        public RoomUserJoint() { }
+
+        public RoomUserJoint(int roomId, int userId, int customRoleId)
+        {
+            RoomId = roomId;
+            UserId = userId;
+            CustomRoleId = customRoleId;
+        }
+
         [ForeignKey("RoomId")]
         public int RoomId { get; set; }
 
@@ -15,13 +25,6 @@ namespace Core.Models
         [ForeignKey("CustomRoleId")]
         public int CustomRoleId { get; set; }
 
-        public RoomUserJoint() { }
-
-        public RoomUserJoint(int roomId, int userId, int customRoleId)
-        {
-            RoomId = roomId;
-            UserId = userId;
-            CustomRoleId = customRoleId;
-        }
+        public List<Message> Message { get; set; }
     }
 }

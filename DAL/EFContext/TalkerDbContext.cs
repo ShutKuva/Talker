@@ -20,19 +20,21 @@ namespace DAL.EFContext
 
         public DbSet<CustomRole> CustomRoles { get; set; }
 
-        public TalkerDbContext(DbContextOptions options) : base(options)
-        {
-       
-        }
+        public DbSet<Message> Messages { get; set; }
 
-        /*public TalkerDbContext()
+        //public TalkerDbContext(DbContextOptions options) : base(options)
+        //{
+
+        //}
+
+        public TalkerDbContext()
         {
 
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("data source=ZHEKA\\SQLEXPRESS;initial catalog=TestEF;trusted_connection=true");
-        }*/
+            optionsBuilder.UseSqlServer("data source=DESKTOP-VOR6N2H\\TALKERSQLSERVER;initial catalog=TalkerDb;trusted_connection=true");
+        }
     }
 }

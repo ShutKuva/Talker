@@ -55,7 +55,7 @@ namespace PresentationLayer
             };
         }
         
-        public async Task StartApp()
+        public void StartApp()
         {
             string[] command;
             Dictionary<string, IPLService> dictionaryWithOperations;
@@ -70,7 +70,7 @@ namespace PresentationLayer
                 {
                     try 
                     {
-                        await service.Execute(command);
+                        service.Execute(command);
                     }
                     catch (Exception ex)
                     {

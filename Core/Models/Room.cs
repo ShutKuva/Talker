@@ -9,6 +9,8 @@ namespace Core.Models
     {
         public string Name { get; set; }
 
+        public int IdOfDefaultRole { get; set; }
+
         public List<RoomUserJoint> RoomUsers { get; set; }
 
         public List<Chat> Chats { get; set; }

@@ -8,6 +8,7 @@ using PresentationLayer.Abstractions.Interfaces;
 using PresentationLayer.Services;
 using System.Text;
 using PresentationLayer.Services.Setters;
+using System.Threading.Tasks;
 
 namespace PresentationLayer
 {
@@ -39,7 +40,8 @@ namespace PresentationLayer
                     ["cPar"] = new ChangingAuthorizationParameters(setter, _openedSession),
                     ["logOut"] = new Logout(_openedSession),
                     ["crRoom"] = new CreateNewRoom(crudRoom, crudUser, crudRole, roomUserJointService, _openedSession),
-                    ["openRoom"] = new OpenRoom(_openedSession, crudRoomUser)
+                    ["openRoom"] = new OpenRoom(_openedSession, crudRoomUser),
+                    ["regInRoom"] = new RegisterInRoom(roomUserJointService, crudRoom, _openedSession)
                 },
                 [Location.InRoom] = new Dictionary<string, IPLService>
                 {
@@ -53,7 +55,7 @@ namespace PresentationLayer
             };
         }
         
-        public void StartApp()
+        public async Task StartApp()
         {
             string[] command;
             Dictionary<string, IPLService> dictionaryWithOperations;
@@ -68,7 +70,7 @@ namespace PresentationLayer
                 {
                     try 
                     {
-                        service.Execute(command);
+                        await service.Execute(command);
                     }
                     catch (Exception ex)
                     {

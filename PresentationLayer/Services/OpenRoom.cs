@@ -25,7 +25,7 @@ namespace PresentationLayer.Services
             if (command.Length > 1)
             {
                 var roomUser = await _crudRoomUser.ReadWithCondition(x => x.UserId == _openedSession.LoggedUser.Id && x.Room.Name == command[1]);
-                if (roomUser.Any())
+                if (roomUser?.Any() ?? false)
                 {
                     _openedSession.MyLocation = Location.InRoom;
                     _openedSession.RoomId = roomUser.FirstOrDefault().RoomId;

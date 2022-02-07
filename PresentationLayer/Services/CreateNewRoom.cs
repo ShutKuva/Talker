@@ -12,6 +12,7 @@ namespace PresentationLayer.Services
     public class CreateNewRoom : IPLService
     {
         private readonly CustomRole.RoleRights defaultAdminRoleRigths = (CustomRole.RoleRights) 31;
+        private readonly CustomRole.RoleRights defaultDefaultRoleRights = (CustomRole.RoleRights) 1;
         private readonly ICrudService<Room> _crudRoom;
         private readonly ICrudService<User> _crudUser;
         private readonly ICrudService<CustomRole> _crudRole;
@@ -57,9 +58,15 @@ namespace PresentationLayer.Services
 
             var user = _openedSession.LoggedUser;
 
+            var defaultRole = new CustomRole("Default", (int) defaultDefaultRoleRights);
+
             var adminRole = new CustomRole("Admin", (int) defaultAdminRoleRigths);
 
             await _crudRole.Create(adminRole);
+
+            await _crudRole.Create(defaultRole);
+
+            room.IdOfDefaultRole = defaultRole.Id;
 
             await _roomUserJointService.CreateNewUserInRoom(room.Id, user.Id, adminRole.Id);
 

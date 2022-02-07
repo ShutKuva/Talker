@@ -24,7 +24,7 @@ namespace PresentationLayer.Services
 
         public async Task Execute(string[] command)
         {
-            var chat = await _chatUser.ReadWithCondition(x => (x.Room.Id == _openedSession.RoomId) && (x.Id == _openedSession.ChatId));
+            var chat = await _chatUser.ReadWithCondition(x => (x.RoomId == _openedSession.RoomId) && (x.Id == _openedSession.ChatId));
 
             if (chat.Any())
             {

@@ -22,12 +22,14 @@ namespace DAL.EFContext
 
         public DbSet<Message> Messages { get; set; }
 
-        //public TalkerDbContext(DbContextOptions options) : base(options)
-        //{
+        public DbSet<Chat> Chats { get; set; }
 
-        //}
+        public TalkerDbContext(DbContextOptions options) : base(options)
+        {
 
-        public TalkerDbContext()
+        }
+
+        /*public TalkerDbContext()
         {
 
         }
@@ -35,6 +37,6 @@ namespace DAL.EFContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("data source=ZHEKA\\SQLEXPRESS;initial catalog=TestEF;trusted_connection=true");
-        }
+        }*/
     }
 }

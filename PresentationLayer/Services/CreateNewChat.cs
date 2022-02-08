@@ -31,7 +31,7 @@ namespace PresentationLayer.Services
                 name = GetName();
             }
 
-            Chat chat = new Chat(name, _openedSession.RoomId);
+            var chat = new Chat(name, _openedSession.RoomId);
             bool success;
             do
             {

@@ -29,15 +29,15 @@ namespace DAL.EFContext
 
         }
 
-        /*public TalkerDbContext()
-        {
+        //public TalkerDbContext()
+        //{
 
-        }
+        //}
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseSqlServer("data source=ZHEKA\\SQLEXPRESS;initial catalog=TestEF;trusted_connection=true");
-        }*/
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    /*optionsBuilder.UseLazyLoadingProxies();*/
+        //    optionsBuilder.UseSqlServer("data source=DESKTOP-VOR6N2H\\TALKERSQLSERVER;initial catalog=TalkerDb;trusted_connection=true");
+        //}
     }
 }

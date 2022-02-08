@@ -26,7 +26,7 @@ namespace PresentationLayer.Services
 
         public async Task Execute(string[] command)
         {
-            User tempUser = new User(_openedSession.LoggedUser);
+            var tempUser = new User(_openedSession.LoggedUser);
 
             if (command.Length == 1)
             {

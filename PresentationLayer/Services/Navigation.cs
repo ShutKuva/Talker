@@ -7,19 +7,20 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer.Services
 {
-    class Logout : IPLService
+    public class Navigation : IPLService
     {
-        private readonly Session _openSession;
+        private readonly Session _openedSession;
 
-        public Logout(Session openSession)
+        public Location GetLocation { get => _openedSession.MyLocation; }
+
+        public Navigation(Session openedSession)
         {
-            _openSession = openSession;
+            _openedSession = openedSession;
         }
 
         public Task Execute(string[] command)
         {
-            _openSession.PushBack();
-            Console.WriteLine("Good bye!");
+            _openedSession.PushBack();
             return Task.CompletedTask;
         }
     }

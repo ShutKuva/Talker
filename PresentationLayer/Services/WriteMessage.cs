@@ -29,7 +29,7 @@ namespace PresentationLayer.Services
             if (chat?.Any() ?? false)
             {
                 Console.WriteLine("Write your messange:");
-                Message newMessage = new Message(Console.ReadLine(), DateTime.Now, chat.FirstOrDefault().Id, _openedSession.LoggedUser.Id);
+                var newMessage = new Message(Console.ReadLine(), DateTime.Now, chat.FirstOrDefault().Id, _openedSession.LoggedUser.Id);
                 await _crudMessage.Create(newMessage);
             }
         }

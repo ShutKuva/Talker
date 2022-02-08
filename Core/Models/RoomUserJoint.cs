@@ -1,4 +1,5 @@
 using Core.DbCreator;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,6 +15,7 @@ namespace Core.Models
             RoomId = roomId;
             UserId = userId;
             CustomRoleId = customRoleId;
+            UserColor = new Random().Next(1, 14);
         }
 
         [ForeignKey("RoomId")]
@@ -24,6 +26,8 @@ namespace Core.Models
 
         [ForeignKey("CustomRoleId")]
         public int CustomRoleId { get; set; }
+
+        public int UserColor { get; set; }
 
         public Room Room { get; set; }
     }

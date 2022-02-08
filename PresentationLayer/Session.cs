@@ -30,5 +30,13 @@ namespace PresentationLayer
             MyLocation = Location.Unlogged;
             LoggedUser = null;
         }
+
+        public void PushBack()
+        {
+            if ((int) MyLocation >= 1)
+            {
+                MyLocation--;
+            }
+        }
     }
 }

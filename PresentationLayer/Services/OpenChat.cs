@@ -15,13 +15,20 @@ namespace PresentationLayer.Services
         private readonly ICrudService<Chat> _crudChat;
         private readonly ICrudService<Message> _crudMessage;
         private readonly ICrudService<User> _crudUser;
+        private readonly IRoomUserJointService _roomUserJointService;
 
-        public OpenChat(ICrudService<Chat> crudChat, ICrudService<Message> crudMessage, ICrudService<User> crudUser, Session openedSession)
+        public OpenChat(
+            ICrudService<Chat> crudChat,
+            ICrudService<Message> crudMessage,
+            ICrudService<User> crudUser,
+            Session openedSession,
+            IRoomUserJointService roomUserJointService)
         {
             _crudChat = crudChat;
             _crudUser = crudUser;
             _crudMessage = crudMessage;
             _openedSession = openedSession;
+            _roomUserJointService = roomUserJointService;
         }
 
         public async Task Execute(string[] command)
@@ -36,11 +43,14 @@ namespace PresentationLayer.Services
                     _openedSession.ChatId = chat.FirstOrDefault().Id;
                     await GetAll();
                 }
+
                 else
                 {
                     Console.WriteLine("Name of chat is invalid");
                 }
-            } else
+            }
+            
+            else
             {
                 Console.WriteLine("Name of chat is empty");
             }
@@ -49,15 +59,29 @@ namespace PresentationLayer.Services
         private async Task GetAll()
         {
             var messages = await _crudMessage.ReadWithCondition(x => x.ChatId == _openedSession.ChatId);
+
             if (messages != null)
             {
                 foreach (Message message in messages)
                 {
                     var users = await _crudUser.ReadWithCondition(x => x.Id == message.UserId);
-                    Console.WriteLine($"\"{users.FirstOrDefault().Username}\"");
-                    Console.WriteLine($"\t{message.Text}\n");
+                    var user = users.FirstOrDefault();
+
+                    var usersInRoom = await _roomUserJointService.ReadWithCondition(x =>
+                        x.UserId == message.UserId &&
+                        x.RoomId == _openedSession.RoomId);
+                    var userJoint = usersInRoom.FirstOrDefault();
+
+                    Console.Write(message.Text + " - ");
+                    var initialColor = Console.ForegroundColor;
+                    Console.ForegroundColor = (ConsoleColor) userJoint.UserColor;
+                    Console.Write(user.Username);
+                    Console.ForegroundColor = initialColor;
+                    Console.WriteLine("   " + message.WrittenAt);
                 }
-            } else
+            }
+            
+            else
             {
                 Console.WriteLine("Chat is empty");
             }

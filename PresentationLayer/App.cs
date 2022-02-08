@@ -25,9 +25,10 @@ namespace PresentationLayer
                    ICrudService<RoomUserJoint> crudRoomUser,
                    IRoomUserJointService roomUserJointService,
                    IHashHandler hashHandler,
-                   IPasswordValidator passwordValidator,
                    Setter setter)
         {
+            var navigation = new Navigation(_openedSession);
+
             _allOperations = new Dictionary<Location, Dictionary<string, IPLService>>
             {
                 [Location.Unlogged] = new Dictionary<string, IPLService>
@@ -46,11 +47,13 @@ namespace PresentationLayer
                 [Location.InRoom] = new Dictionary<string, IPLService>
                 {
                     ["crChat"] = new CreateNewChat(crudChat, _openedSession),
-                    ["openChat"] = new OpenChat(crudChat, crudMessage, crudUser, _openedSession)
+                    ["openChat"] = new OpenChat(crudChat, crudMessage, crudUser, _openedSession, roomUserJointService),
+                    ["back"] = navigation
                 },
                 [Location.InChat] = new Dictionary<string, IPLService>
                 {
-                    ["send"] = new WriteMessage(crudChat, crudMessage, _openedSession)
+                    ["send"] = new WriteMessage(crudChat, crudMessage, _openedSession),
+                    ["back"] = navigation
                 }
             };
         }
@@ -70,7 +73,7 @@ namespace PresentationLayer
                 {
                     try 
                     {
-                        service.Execute(command);
+                        service.Execute(command).Wait();
                     }
                     catch (Exception ex)
                     {
@@ -85,7 +88,7 @@ namespace PresentationLayer
 
         public void HelpCommands()
         {
-            StringBuilder tempString = new StringBuilder();
+            var tempString = new StringBuilder();
             tempString.Append("Write command (you can use ");
             var tempDirectory = new Dictionary<string, IPLService>();
             if(_allOperations.TryGetValue(_openedSession.MyLocation, out tempDirectory))
@@ -103,6 +106,7 @@ namespace PresentationLayer
                     i++;
                 }
 
+                Console.WriteLine(_openedSession.MyLocation);
                 Console.WriteLine(tempString.ToString());
             } else
             {

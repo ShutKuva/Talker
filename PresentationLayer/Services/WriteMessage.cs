@@ -26,10 +26,10 @@ namespace PresentationLayer.Services
         {
             var chat = await _chatUser.ReadWithCondition(x => (x.RoomId == _openedSession.RoomId) && (x.Id == _openedSession.ChatId));
 
-            if (chat.Any())
+            if (chat?.Any() ?? false)
             {
                 Console.WriteLine("Write your messange:");
-                Message newMessage = new Message(Console.ReadLine(), DateTime.Now, chat.FirstOrDefault().Id);
+                Message newMessage = new Message(Console.ReadLine(), DateTime.Now, chat.FirstOrDefault().Id, _openedSession.LoggedUser.Id);
                 await _crudMessage.Create(newMessage);
             }
         }

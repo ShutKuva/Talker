@@ -12,7 +12,7 @@ namespace PresentationLayer.Services
     public class CreateNewRoom : IPLService
     {
         private readonly CustomRole.RoleRights defaultAdminRoleRigths = (CustomRole.RoleRights) 31;
-        private readonly CustomRole.RoleRights defaultDefaultRoleRights = (CustomRole.RoleRights) 1;
+        private readonly CustomRole.RoleRights defaultDefaultRoleRights = CustomRole.RoleRights.None;
         private readonly ICrudService<Room> _crudRoom;
         private readonly ICrudService<User> _crudUser;
         private readonly ICrudService<CustomRole> _crudRole;
@@ -73,10 +73,10 @@ namespace PresentationLayer.Services
             var roomUserJoints = await _roomUserJointService.ReadWithCondition(x => x.UserId == user.Id && x.RoomId == room.Id);
             var roomUserJoint = roomUserJoints.FirstOrDefault();
 
-            room.RoomUsers = new List<RoomUserJoint>()
+            /*room.RoomUsers = new List<RoomUserJoint>()
             {
                 await _roomUserJointService.GetRoomUserJoint(roomUserJoint.Id),
-            };
+            };*/
 
             _openedSession.MyLocation = Location.InRoom;
             _openedSession.RoomId = room.Id;

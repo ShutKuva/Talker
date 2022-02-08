@@ -46,11 +46,11 @@ namespace PresentationLayer
                 [Location.InRoom] = new Dictionary<string, IPLService>
                 {
                     ["crChat"] = new CreateNewChat(crudChat, _openedSession),
-                    ["openChat"] = new OpenChat(crudChat, _openedSession)
+                    ["openChat"] = new OpenChat(crudChat, crudMessage, crudUser, _openedSession)
                 },
                 [Location.InChat] = new Dictionary<string, IPLService>
                 {
-                    ["mes"] = new WriteMessage(crudChat, crudMessage, _openedSession)
+                    ["send"] = new WriteMessage(crudChat, crudMessage, _openedSession)
                 }
             };
         }

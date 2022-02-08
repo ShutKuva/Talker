@@ -12,6 +12,7 @@ namespace PresentationLayer.Services
     public class CreateNewRoom : IPLService
     {
         private readonly CustomRole.RoleRights defaultAdminRoleRigths = (CustomRole.RoleRights) 31;
+        private readonly CustomRole.RoleRights defaultDefaultRoleRights = CustomRole.RoleRights.None;
         private readonly ICrudService<Room> _crudRoom;
         private readonly ICrudService<User> _crudUser;
         private readonly ICrudService<CustomRole> _crudRole;
@@ -42,24 +43,40 @@ namespace PresentationLayer.Services
             Console.WriteLine("Enter a room name: ");
             room.Name = Console.ReadLine();
 
+            bool success;
+            do
+            {
+                success = await _crudRoom.Create(room, x => x.Name == room.Name);
+                if (!success)
+                {
+                    Console.WriteLine("This name is already exists, try another:");
+                    room.Name = Console.ReadLine();
+                }
+            } while (!success);
+
             room.CreatedAt = DateTime.Now;
 
             var user = _openedSession.LoggedUser;
 
+            var defaultRole = new CustomRole("Default", (int) defaultDefaultRoleRights);
+
             var adminRole = new CustomRole("Admin", (int) defaultAdminRoleRigths);
 
-            var roleCreate = await _crudRole.Create(adminRole);
-            var roomCreate = await _crudRoom.Create(room);
+            await _crudRole.Create(adminRole);
+
+            await _crudRole.Create(defaultRole);
+
+            room.IdOfDefaultRole = defaultRole.Id;
 
             await _roomUserJointService.CreateNewUserInRoom(room.Id, user.Id, adminRole.Id);
 
             var roomUserJoints = await _roomUserJointService.ReadWithCondition(x => x.UserId == user.Id && x.RoomId == room.Id);
             var roomUserJoint = roomUserJoints.FirstOrDefault();
 
-            room.RoomUser = new List<RoomUserJoint>()
+            /*room.RoomUsers = new List<RoomUserJoint>()
             {
                 await _roomUserJointService.GetRoomUserJoint(roomUserJoint.Id),
-            };
+            };*/
 
             _openedSession.MyLocation = Location.InRoom;
             _openedSession.RoomId = room.Id;

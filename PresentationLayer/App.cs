@@ -8,6 +8,7 @@ using PresentationLayer.Abstractions.Interfaces;
 using PresentationLayer.Services;
 using System.Text;
 using PresentationLayer.Services.Setters;
+using System.Threading.Tasks;
 
 namespace PresentationLayer
 {
@@ -19,6 +20,9 @@ namespace PresentationLayer
         public App(ICrudService<User> crudUser,
                    ICrudService<Room> crudRoom,
                    ICrudService<CustomRole> crudRole,
+                   ICrudService<Chat> crudChat,
+                   ICrudService<Message> crudMessage,
+                   ICrudService<RoomUserJoint> crudRoomUser,
                    IRoomUserJointService roomUserJointService,
                    IHashHandler hashHandler,
                    IPasswordValidator passwordValidator,
@@ -35,7 +39,18 @@ namespace PresentationLayer
                 {
                     ["cPar"] = new ChangingAuthorizationParameters(setter, _openedSession),
                     ["logOut"] = new Logout(_openedSession),
-                    ["crRoom"] = new CreateNewRoom(crudRoom, crudUser, crudRole, roomUserJointService, _openedSession)
+                    ["crRoom"] = new CreateNewRoom(crudRoom, crudUser, crudRole, roomUserJointService, _openedSession),
+                    ["openRoom"] = new OpenRoom(_openedSession, crudRoomUser),
+                    ["regInRoom"] = new RegisterInRoom(roomUserJointService, crudRoom, _openedSession)
+                },
+                [Location.InRoom] = new Dictionary<string, IPLService>
+                {
+                    ["crChat"] = new CreateNewChat(crudChat, _openedSession),
+                    ["openChat"] = new OpenChat(crudChat, crudMessage, crudUser, _openedSession)
+                },
+                [Location.InChat] = new Dictionary<string, IPLService>
+                {
+                    ["send"] = new WriteMessage(crudChat, crudMessage, _openedSession)
                 }
             };
         }

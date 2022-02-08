@@ -16,6 +16,8 @@ namespace Core.Models
 
         public string Username { get; set; }
 
+        public List<Message> Messages { get; set; }
+
         public List<RoomUserJoint> RoomUser { get; set; }
 
         public User()

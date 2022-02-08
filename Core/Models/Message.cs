@@ -17,11 +17,12 @@ namespace Core.Models
 
         }
 
-        public Message(string text, DateTime writtenAt, int roomUserJointId)
+        public Message(string text, DateTime writtenAt, int chatId, int userId)
         {
             Text = text;
             WrittenAt = writtenAt;
-            RoomUserJointId = roomUserJointId;
+            ChatId = chatId;
+            UserId = userId;
         }
 
         [Required]
@@ -30,7 +31,14 @@ namespace Core.Models
 
         public DateTime WrittenAt { get; set; }
 
-        [ForeignKey("RoomUserJointId")]
-        public int RoomUserJointId { get; set; }
+        [ForeignKey("UserId")]
+        public int UserId { get; set; }
+
+        public User User { get; set; }
+
+        [ForeignKey("ChatId")]
+        public int ChatId { get; set; }
+
+        public Chat Chat { get; set; }
     }
 }

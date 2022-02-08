@@ -72,12 +72,11 @@ namespace PresentationLayer.Services
                         x.RoomId == _openedSession.RoomId);
                     var userJoint = usersInRoom.FirstOrDefault();
 
-                    Console.Write(message.Text + " - ");
+                    Console.Write($"{message.WrittenAt, 10}  {message.Text, 5} - ");
                     var initialColor = Console.ForegroundColor;
-                    Console.ForegroundColor = (ConsoleColor) userJoint.UserColor;
-                    Console.Write(user.Username);
+                    Console.ForegroundColor = (ConsoleColor)userJoint.UserColor;
+                    Console.WriteLine(user.Username);
                     Console.ForegroundColor = initialColor;
-                    Console.WriteLine("   " + message.WrittenAt);
                 }
             }
             

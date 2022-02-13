@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "13d46c03-5119-4f30-af4b-3978e321ed3b": {
+      "ProjectGuid": "13d46c03-5119-4f30-af4b-3978e321ed3b",
+      "DisplayName": "TalkerAPI",
+      "ColorIndex": 0
+    },
+    "a92f1dd4-30b5-493f-b93f-a8c7b5ced3ab": {
+      "ProjectGuid": "a92f1dd4-30b5-493f-b93f-a8c7b5ced3ab",
+      "DisplayName": "Core",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

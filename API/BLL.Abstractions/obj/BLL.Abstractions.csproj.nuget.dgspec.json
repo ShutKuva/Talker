@@ -1,0 +1,120 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL.Abstractions\\BLL.Abstractions.csproj": {}
+  },
+  "projects": {
+    "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL.Abstractions\\BLL.Abstractions.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL.Abstractions\\BLL.Abstractions.csproj",
+        "projectName": "BLL.Abstractions",
+        "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL.Abstractions\\BLL.Abstractions.csproj",
+        "packagesPath": "C:\\Users\\ShutKuva\\.nuget\\packages\\",
+        "outputPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL.Abstractions\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ShutKuva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\Core.csproj": {
+                "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\Core.csproj",
+        "projectName": "Core",
+        "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\ShutKuva\\.nuget\\packages\\",
+        "outputPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\ShutKuva\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

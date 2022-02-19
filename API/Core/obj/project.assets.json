@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\Core.csproj",
+      "projectUniqueName": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\Core.csproj",
+      "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\ShutKuva\\.nuget\\packages\\",
-      "outputPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\obj\\",
+      "outputPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ShutKuva\\AppData\\Roaming\\NuGet\\NuGet.Config",

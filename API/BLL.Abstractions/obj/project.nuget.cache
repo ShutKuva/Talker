@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rh+DpWSVYz18HDqh/J5a6VgCJQrL/j1zJHBSrePbirxgcP0kxQPtjD45owQ3TSj11QagdNhrpehHwxkBnNxUIA==",
+  "dgSpecHash": "Gq1QzgYKNDKOybcoltQ2zwj1f9N2UxhGtc9pQ4j1I6Gm8sv9vwcDa2VxshbJkmvXOPavWQiMTIvYF6BicG0/NQ==",
   "success": true,
-  "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL.Abstractions\\BLL.Abstractions.csproj",
+  "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\BLL.Abstractions\\BLL.Abstractions.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -21,3 +21,15 @@ F:\ProjectIAmBadProgC#\Reposes\Talker\Core\obj\Debug\net6.0\Core.csproj.CoreComp
 F:\ProjectIAmBadProgC#\Reposes\Talker\Core\obj\Debug\net6.0\Core.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\Core\obj\Debug\net6.0\ref\Core.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\Core\obj\Debug\net6.0\Core.pdb
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\bin\Debug\net6.0\Core.deps.json
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\bin\Debug\net6.0\Core.dll
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\bin\Debug\net6.0\ref\Core.dll
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\bin\Debug\net6.0\Core.pdb
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\obj\Debug\net6.0\Core.csproj.AssemblyReference.cache
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\obj\Debug\net6.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\obj\Debug\net6.0\Core.AssemblyInfoInputs.cache
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\obj\Debug\net6.0\Core.AssemblyInfo.cs
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\obj\Debug\net6.0\Core.csproj.CoreCompileInputs.cache
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\obj\Debug\net6.0\Core.dll
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\obj\Debug\net6.0\ref\Core.dll
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\Core\obj\Debug\net6.0\Core.pdb

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZAYVJGij+00IaRKRQb7cJNQ/6b6yKr06zAGT76Mdic2vnbluf06hjIL/2JTCz0nsynPGRBURZRqDYqac3kZNyQ==",
+  "dgSpecHash": "wRFEFfB67xO5RbBpoiX0MGJ3QKnbgqPSoLGbY+5MtCyNZHKC45fQiDeZm7eJCmk1oIHzNNWwCcVi+fScR2+bsw==",
   "success": true,
-  "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DAL.Abstractions\\DAL.Abstractions.csproj",
+  "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL.Abstractions\\DAL.Abstractions.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.Abstractions;
 
 namespace TalkerAPI.Controllers
 {
-    [Route("api/user")]
+    [Route("user")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -29,5 +29,18 @@ namespace TalkerAPI.Controllers
             return NotFound();
         }
 
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateUser(User user)
+        {
+            var status = await _crudUser.Create(user, x => x.Username == user.Username);
+
+            if (status)
+            {
+                return Ok();
+            } else
+            {
+                return BadRequest();
+            }
+        }
     }
 }

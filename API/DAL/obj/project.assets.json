@@ -1903,11 +1903,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DAL\\DAL.csproj",
+      "projectUniqueName": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DAL\\DAL.csproj",
+      "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL\\DAL.csproj",
       "packagesPath": "C:\\Users\\ShutKuva\\.nuget\\packages\\",
-      "outputPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DAL\\obj\\",
+      "outputPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ShutKuva\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1924,11 +1924,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\Core.csproj": {
-              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\Core.csproj"
+            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\Core\\Core.csproj": {
+              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\Core\\Core.csproj"
             },
-            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DAL.Abstractions\\DAL.Abstractions.csproj": {
-              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DAL.Abstractions\\DAL.Abstractions.csproj"
+            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL.Abstractions\\DAL.Abstractions.csproj": {
+              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL.Abstractions\\DAL.Abstractions.csproj"
             }
           }
         }

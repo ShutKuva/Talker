@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EcrgJOIharJnxv/if6NeyEwCAAK+KPJlUyTRb9qkuNQs5B3Q93r+XApcxmdIfL7yjJImwpb+LypyS/TEppqBcw==",
+  "dgSpecHash": "21XTezGrxKJ19fC7e6ZexAf+J5T+KYMOaCHICtIeroN/lHERGUxvRkKKTs4lwmAwdMBI2CSEThPv6N84OcTIRQ==",
   "success": true,
-  "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\TalkerAPI\\TalkerAPI.csproj",
+  "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\TalkerAPI\\TalkerAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ShutKuva\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ShutKuva\\.nuget\\packages\\mailkit\\2.6.0\\mailkit.2.6.0.nupkg.sha512",

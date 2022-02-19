@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YAxq1fHcK8qDoPhCJxIN5qjahLhA68Emp/0YlmQJopz81wyujj/jElJed5sxRL9Ayx/rU99bPvtxdecPLECLSQ==",
+  "dgSpecHash": "sv6f8amLWIW08u+71rcGZeM44remJIx9wvbMd+geUosWwuSszIfxB1CIlflwA45Q5Gm76llHAeXNTvALFGaS/A==",
   "success": true,
-  "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL\\BLL.csproj",
+  "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ShutKuva\\.nuget\\packages\\mailkit\\2.6.0\\mailkit.2.6.0.nupkg.sha512",
     "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",

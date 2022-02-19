@@ -7188,11 +7188,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\TalkerAPI\\TalkerAPI.csproj",
+      "projectUniqueName": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\TalkerAPI\\TalkerAPI.csproj",
       "projectName": "TalkerAPI",
-      "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\TalkerAPI\\TalkerAPI.csproj",
+      "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\TalkerAPI\\TalkerAPI.csproj",
       "packagesPath": "C:\\Users\\ShutKuva\\.nuget\\packages\\",
-      "outputPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\TalkerAPI\\obj\\",
+      "outputPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\TalkerAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ShutKuva\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7209,17 +7209,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL.Abstractions\\BLL.Abstractions.csproj": {
-              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL.Abstractions\\BLL.Abstractions.csproj"
+            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\BLL.Abstractions\\BLL.Abstractions.csproj": {
+              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\BLL.Abstractions\\BLL.Abstractions.csproj"
             },
-            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL\\BLL.csproj": {
-              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL\\BLL.csproj"
+            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\BLL\\BLL.csproj": {
+              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\BLL\\BLL.csproj"
             },
-            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DAL.Abstractions\\DAL.Abstractions.csproj": {
-              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DAL.Abstractions\\DAL.Abstractions.csproj"
+            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL.Abstractions\\DAL.Abstractions.csproj": {
+              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL.Abstractions\\DAL.Abstractions.csproj"
             },
-            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DAL\\DAL.csproj": {
-              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DAL\\DAL.csproj"
+            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL\\DAL.csproj": {
+              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL\\DAL.csproj"
             }
           }
         }

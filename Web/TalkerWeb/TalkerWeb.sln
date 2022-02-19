@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalkerWeb", "TalkerWeb\TalkerWeb.csproj", "{5635442B-548E-49A4-A478-BC77B3069569}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5635442B-548E-49A4-A478-BC77B3069569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5635442B-548E-49A4-A478-BC77B3069569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5635442B-548E-49A4-A478-BC77B3069569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5635442B-548E-49A4-A478-BC77B3069569}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57D3034D-12C2-4F01-ACD6-1B98F07866F5}
+	EndGlobalSection
+EndGlobal

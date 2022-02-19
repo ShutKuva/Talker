@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WyMcgEbWhp4IriQpvQPMKkf2IW1ZGGwlSVq3h9ILNs6So7su27h3Ix6bYiN/o4xvYdMlZtqKUuTaZtL4FxHKgA==",
+  "dgSpecHash": "LTngKfZq69NPtly0RY/ZuqnAycqa+4kUzgTWumMVMCWzmSjgpLCTzE3rL9yaK8tocqX/Sf9Q65apL+4Q8uM8Cw==",
   "success": true,
-  "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\DAL\\DAL.csproj",
+  "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL\\DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ShutKuva\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

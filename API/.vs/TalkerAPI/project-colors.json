@@ -10,7 +10,12 @@
       "ProjectGuid": "a92f1dd4-30b5-493f-b93f-a8c7b5ced3ab",
       "DisplayName": "Core",
       "ColorIndex": 1
+    },
+    "7340b5d5-f149-495c-9f22-469fa3b3e4ac": {
+      "ProjectGuid": "7340b5d5-f149-495c-9f22-469fa3b3e4ac",
+      "DisplayName": "BLL",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 3
 }

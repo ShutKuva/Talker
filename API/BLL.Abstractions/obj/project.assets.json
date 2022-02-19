@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL.Abstractions\\BLL.Abstractions.csproj",
+      "projectUniqueName": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\BLL.Abstractions\\BLL.Abstractions.csproj",
       "projectName": "BLL.Abstractions",
-      "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL.Abstractions\\BLL.Abstractions.csproj",
+      "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\BLL.Abstractions\\BLL.Abstractions.csproj",
       "packagesPath": "C:\\Users\\ShutKuva\\.nuget\\packages\\",
-      "outputPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\BLL.Abstractions\\obj\\",
+      "outputPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\BLL.Abstractions\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ShutKuva\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -53,8 +53,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\Core.csproj": {
-              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\Core\\Core.csproj"
+            "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\Core\\Core.csproj": {
+              "projectPath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\Core\\Core.csproj"
             }
           }
         }

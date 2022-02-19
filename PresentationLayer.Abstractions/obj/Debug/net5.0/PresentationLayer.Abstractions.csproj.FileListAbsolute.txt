@@ -1,0 +1,12 @@
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\bin\Debug\net5.0\PresentationLayer.Abstractions.deps.json
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\bin\Debug\net5.0\PresentationLayer.Abstractions.dll
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\bin\Debug\net5.0\ref\PresentationLayer.Abstractions.dll
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\bin\Debug\net5.0\PresentationLayer.Abstractions.pdb
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\obj\Debug\net5.0\PresentationLayer.Abstractions.csproj.AssemblyReference.cache
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\obj\Debug\net5.0\PresentationLayer.Abstractions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\obj\Debug\net5.0\PresentationLayer.Abstractions.AssemblyInfoInputs.cache
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\obj\Debug\net5.0\PresentationLayer.Abstractions.AssemblyInfo.cs
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\obj\Debug\net5.0\PresentationLayer.Abstractions.csproj.CoreCompileInputs.cache
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\obj\Debug\net5.0\PresentationLayer.Abstractions.dll
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\obj\Debug\net5.0\ref\PresentationLayer.Abstractions.dll
+C:\Users\mezik\source\repos\Talker\PresentationLayer.Abstractions\obj\Debug\net5.0\PresentationLayer.Abstractions.pdb

@@ -1,0 +1,15 @@
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\bin\Debug\net5.0\DAL.Abstractions.deps.json
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\bin\Debug\net5.0\DAL.Abstractions.dll
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\bin\Debug\net5.0\ref\DAL.Abstractions.dll
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\bin\Debug\net5.0\DAL.Abstractions.pdb
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\bin\Debug\net5.0\Core.dll
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\bin\Debug\net5.0\Core.pdb
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\obj\Debug\net5.0\DAL.Abstractions.csproj.AssemblyReference.cache
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\obj\Debug\net5.0\DAL.Abstractions.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\obj\Debug\net5.0\DAL.Abstractions.AssemblyInfoInputs.cache
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\obj\Debug\net5.0\DAL.Abstractions.AssemblyInfo.cs
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\obj\Debug\net5.0\DAL.Abstractions.csproj.CoreCompileInputs.cache
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\obj\Debug\net5.0\DAL.Abstractions.csproj.CopyComplete
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\obj\Debug\net5.0\DAL.Abstractions.dll
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\obj\Debug\net5.0\ref\DAL.Abstractions.dll
+C:\Users\mezik\source\repos\Talker\DAL.Abstractions\obj\Debug\net5.0\DAL.Abstractions.pdb

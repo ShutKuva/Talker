@@ -1,0 +1,97 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Rubik';
+    font-weight: 600;
+}
+a{
+    text-decoration: none;
+}
+header{
+    height: 100vh;
+    width: 100vw;
+    background: radial-gradient(50% 50% at 50% 50%, #1C2E72 0%, #111D4A 100%);
+}
+nav{
+    display: flex;
+    justify-content: flex-end;
+    padding: 5vh 5vw;
+}
+input{
+    border: none;
+    border-radius: 20px;
+    width: 38vw;
+    padding: 1vh 1vw;
+    display: block;
+    margin: 5px 0;
+}
+form{
+    width: 40vw;
+    margin: 30vh auto;
+}
+button{
+    border: none;
+    font-family: 'Rubik';
+    font-weight: 600;
+}
+.nonMainNav{
+    justify-content: flex-start;
+}
+.btn{
+    margin: 0 auto;
+    text-transform: uppercase;
+    width: 30vw;
+    color: #E4E3D3;
+    padding: 10px 15px;
+    background-color: #ED6A5A;
+    border-radius: 20px;
+    transition: all .3s ease-in-out;
+}
+.btn:hover{
+    background-color: #E4E3D3;
+    color: #ED6A5A;
+}
+.stars{
+    height: inherit;
+    width: inherit;
+    background-image: url(../img/Stars.svg);
+    background-size: cover;
+}
+.navRef{
+    color: #E4E3D3;
+    text-transform: uppercase;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+.navRef:hover{
+    color: #ED6A5A;
+}
+.mainLogo{
+    width: 70vw;
+    margin: 10vh auto;
+    text-align: center;
+}
+.talkerLogo{
+    margin: 0;
+    font-size: 200px;
+    color: #E6E7FF;
+}
+.logoDescription{
+    font-weight: 100;
+    color: #A5A8FF;
+    text-transform: uppercase;
+}
+.regBtn{
+    margin-top: 5vh;
+}
+.formWrapper{
+    width: 40vw;
+}
+.pSubmit{
+    width: inherit;
+}
+.error{
+    display: block;
+    color: #ED6A5A;
+    margin: 10px 0; 
+}

@@ -1,0 +1,15 @@
+﻿@model TalkerWeb.Models.LoginModel
+<header>
+    <div class = "stars">
+        <nav class = "nonMainNav">
+            <a class = "navRef" asp-route="mainPage">talker</a>
+        </nav>
+        <form action = "Login" method="post">
+            <span class="error" asp-validation-for = "Login"></span>
+            <input type="text" asp-for = "Login">
+            <span class="error" asp-validation-for = "Password"></span>
+            <input type="password" asp-for = "Password">
+            <button type="submit" class = "btn pSubmit">Ввійти</button>
+        </form>
+    </div>
+</header>

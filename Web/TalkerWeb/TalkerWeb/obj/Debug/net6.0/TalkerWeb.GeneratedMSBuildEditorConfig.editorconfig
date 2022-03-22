@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb
 build_property._RazorSourceGeneratorDebug = 
 
+[F:/ProjectIAmBadProgC\#/Reposes/Talker/Web/TalkerWeb/TalkerWeb/Views/Authentication/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/ProjectIAmBadProgC\#/Reposes/Talker/Web/TalkerWeb/TalkerWeb/Views/Main/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

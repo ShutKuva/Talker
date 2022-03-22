@@ -2,11 +2,6 @@ F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\a
 F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\appsettings.json
 F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\TalkerWeb.staticwebassets.runtime.json
 F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\TalkerWeb.exe
-F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\TalkerWeb.deps.json
-F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\TalkerWeb.runtimeconfig.json
-F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\TalkerWeb.dll
-F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\ref\TalkerWeb.dll
-F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\TalkerWeb.pdb
 F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\TalkerWeb.csproj.AssemblyReference.cache
 F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\TalkerWeb.GeneratedMSBuildEditorConfig.editorconfig
 F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\TalkerWeb.AssemblyInfoInputs.cache
@@ -21,6 +16,11 @@ F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\s
 F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\scopedcss\bundle\TalkerWeb.styles.css
 F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\scopedcss\projectbundle\TalkerWeb.bundle.scp.css
 F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\TalkerWeb.dll
-F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\ref\TalkerWeb.dll
+F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\refint\TalkerWeb.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\TalkerWeb.pdb
+F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\TalkerWeb.deps.json
+F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\TalkerWeb.runtimeconfig.json
+F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\TalkerWeb.dll
+F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\bin\Debug\net6.0\TalkerWeb.pdb
 F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\TalkerWeb.genruntimeconfig.cache
+F:\ProjectIAmBadProgC#\Reposes\Talker\Web\TalkerWeb\TalkerWeb\obj\Debug\net6.0\ref\TalkerWeb.dll

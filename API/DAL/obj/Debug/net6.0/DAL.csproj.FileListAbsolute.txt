@@ -39,7 +39,6 @@ F:\ProjectIAmBadProgC#\Reposes\Talker\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\bin\Debug\net6.0\DAL.deps.json
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\bin\Debug\net6.0\DAL.runtimeconfig.json
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\bin\Debug\net6.0\DAL.dll
-F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\bin\Debug\net6.0\ref\DAL.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\bin\Debug\net6.0\DAL.pdb
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\bin\Debug\net6.0\Core.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\bin\Debug\net6.0\DAL.Abstractions.dll
@@ -55,3 +54,4 @@ F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\obj\Debug\net6.0\DAL.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\obj\Debug\net6.0\ref\DAL.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\obj\Debug\net6.0\DAL.pdb
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.cache
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\DAL\obj\Debug\net6.0\refint\DAL.dll

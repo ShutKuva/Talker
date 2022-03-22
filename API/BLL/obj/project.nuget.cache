@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "sv6f8amLWIW08u+71rcGZeM44remJIx9wvbMd+geUosWwuSszIfxB1CIlflwA45Q5Gm76llHAeXNTvALFGaS/A==",
+  "dgSpecHash": "ehRNhLM4eYW5nU4a96VlSRFi/FP2uCpJhsXQmdFsPLvwSdUE6VL84b1NMAs19xrY/nJmp2HnHHNRWQaK18mSMQ==",
   "success": true,
   "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
@@ -66,10 +66,10 @@
     "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.identity.client\\4.21.1\\microsoft.identity.client.4.21.1.nupkg.sha512",
     "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.8.0\\microsoft.identitymodel.jsonwebtokens.6.8.0.nupkg.sha512",
-    "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.identitymodel.logging\\6.8.0\\microsoft.identitymodel.logging.6.8.0.nupkg.sha512",
+    "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.identitymodel.logging\\6.16.0\\microsoft.identitymodel.logging.6.16.0.nupkg.sha512",
     "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.8.0\\microsoft.identitymodel.protocols.6.8.0.nupkg.sha512",
     "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.8.0\\microsoft.identitymodel.protocols.openidconnect.6.8.0.nupkg.sha512",
-    "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.8.0\\microsoft.identitymodel.tokens.6.8.0.nupkg.sha512",
+    "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.16.0\\microsoft.identitymodel.tokens.6.16.0.nupkg.sha512",
     "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

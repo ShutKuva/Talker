@@ -6,6 +6,10 @@ namespace TalkerWeb.Controllers
     {
         public IActionResult Index()
         {
+            if (User?.Identity?.IsAuthenticated ?? false)
+            {
+
+            }
             ViewData["Title"] = "Main";
             return View();
         }

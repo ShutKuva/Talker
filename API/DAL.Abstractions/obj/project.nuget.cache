@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "wRFEFfB67xO5RbBpoiX0MGJ3QKnbgqPSoLGbY+5MtCyNZHKC45fQiDeZm7eJCmk1oIHzNNWwCcVi+fScR2+bsw==",
+  "dgSpecHash": "Cazl6GOZMZB0mP9DjyGbVtfX3gVibGZGV9gTn+TND36n6+BhxGas5PmaWQ/jX7EkZkUI6RDrXpXGu1gDECJVFw==",
   "success": true,
   "projectFilePath": "F:\\ProjectIAmBadProgC#\\Reposes\\Talker\\API\\DAL.Abstractions\\DAL.Abstractions.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.identitymodel.logging\\6.16.0\\microsoft.identitymodel.logging.6.16.0.nupkg.sha512",
+    "C:\\Users\\ShutKuva\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.16.0\\microsoft.identitymodel.tokens.6.16.0.nupkg.sha512",
+    "C:\\Users\\ShutKuva\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

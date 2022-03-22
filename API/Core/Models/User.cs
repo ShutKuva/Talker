@@ -1,4 +1,5 @@
 ﻿using Core.DbCreator;
+using Core.Models.MiniModels;
 using System.Collections.Generic;
 
 namespace Core.Models
@@ -7,15 +8,11 @@ namespace Core.Models
     public class User : BaseEntity
     {
         public string Name { get; set; }
-
         public string Surname { get; set; }
-
         public int Age { get; set; }
-
         public string Password { get; set; }
-
         public string Username { get; set; }
-        public List<RoomUserJoint> RoomUser { get; set; }
+        public List<RoomUserJoint> RoomUser { get; set; } = new List<RoomUserJoint>();
 
         public User()
         {
@@ -30,6 +27,15 @@ namespace Core.Models
             Age = user.Age;
             Password = user.Password;
             Username = user.Username;
+        }
+
+        public User(RegisterModel regModel)
+        {
+            Name = regModel.Name;
+            Surname = regModel.Surname;
+            Age = regModel.Age;
+            Password = regModel.Password;
+            Username = regModel.Username;
         }
     }
 }

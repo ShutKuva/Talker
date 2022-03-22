@@ -154,7 +154,6 @@ F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\bin\Debug\net6.0\TalkerAPI.e
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\bin\Debug\net6.0\TalkerAPI.deps.json
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\bin\Debug\net6.0\TalkerAPI.runtimeconfig.json
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\bin\Debug\net6.0\TalkerAPI.dll
-F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\bin\Debug\net6.0\ref\TalkerAPI.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\bin\Debug\net6.0\TalkerAPI.pdb
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\bin\Debug\net6.0\Humanizer.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\bin\Debug\net6.0\MailKit.dll
@@ -226,3 +225,5 @@ F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\obj\Debug\net6.0\TalkerAPI.d
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\obj\Debug\net6.0\ref\TalkerAPI.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\obj\Debug\net6.0\TalkerAPI.pdb
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\obj\Debug\net6.0\TalkerAPI.genruntimeconfig.cache
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\TalkerAPI\obj\Debug\net6.0\refint\TalkerAPI.dll

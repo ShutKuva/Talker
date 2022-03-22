@@ -42,7 +42,6 @@ F:\ProjectIAmBadProgC#\Reposes\Talker\BLL\obj\Debug\net6.0\ref\BLL.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\BLL\obj\Debug\net6.0\BLL.pdb
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\BLL\bin\Debug\net6.0\BLL.deps.json
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\BLL\bin\Debug\net6.0\BLL.dll
-F:\ProjectIAmBadProgC#\Reposes\Talker\API\BLL\bin\Debug\net6.0\ref\BLL.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\BLL\bin\Debug\net6.0\BLL.pdb
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\BLL\bin\Debug\net6.0\BLL.Abstractions.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\BLL\bin\Debug\net6.0\Core.dll
@@ -61,3 +60,4 @@ F:\ProjectIAmBadProgC#\Reposes\Talker\API\BLL\obj\Debug\net6.0\BLL.csproj.CopyCo
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\BLL\obj\Debug\net6.0\BLL.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\BLL\obj\Debug\net6.0\ref\BLL.dll
 F:\ProjectIAmBadProgC#\Reposes\Talker\API\BLL\obj\Debug\net6.0\BLL.pdb
+F:\ProjectIAmBadProgC#\Reposes\Talker\API\BLL\obj\Debug\net6.0\refint\BLL.dll

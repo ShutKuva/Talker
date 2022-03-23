@@ -43,20 +43,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateAudience = true,
         ValidAudience = builder.Configuration.GetSection("API").GetValue<string>("Audience"),
         ValidateLifetime = true,
-        //LifetimeValidator = delegate (DateTime? notBefore, DateTime? expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
-        //{
-        //    //JwtSecurityToken token = (JwtSecurityToken)securityToken;
-        //    //if (DateTime.Now.CompareTo(notBefore) < 0)
-        //    //{
-        //    //    return false;
-        //    //} else if (DateTime.Now.Equals(expires) || DateTime.Now.CompareTo(expires) > 0)
-        //    //{
-        //    //    return false;
-        //    //}
-        //    //return true;
-            
-        //    return Validators.ValidateLifetime(notBefore, expires, securityToken, validationParameters);
-        //},
 
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetSection("API").GetValue<string>("Key"))),
         ValidateIssuerSigningKey = true,
@@ -71,12 +57,6 @@ builder.Services.AddAuthorization(options =>
     });
 });
 
-//options =>
-//{
-//    var builder = new AuthorizationPolicyBuilder();
-//    options.DefaultPolicy = builder.RequireClaim("username").Build();
-//}
-
 DependencyRegistrar.ConfigureServices(builder.Services);
 var app = builder.Build();
 
@@ -90,8 +70,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
-//app.UseAuthorization();
-app.UseMiddleware<JwtAuthenticateMiddleware>();
+app.UseAuthorization();
 
 app.MapControllers();
 
